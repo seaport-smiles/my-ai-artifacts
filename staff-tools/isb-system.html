@@ -1,39 +1,748 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>ISB Workflow System | Staff Reference</title>
-    <style>
-        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; color: #334155; max-width: 900px; margin: 0 auto; padding: 2rem; background: #f8fafc; }
-        .card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; margin-bottom: 2rem; }
-        h1 { color: #0f172a; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { color: #2563eb; margin-top: 1.5rem; }
-        .status-badge { display: inline-block; padding: 0.25rem 0.75rem; background: #dcfce7; color: #166534; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; }
-        .timeline { border-left: 4px solid #e2e8f0; padding-left: 1.5rem; margin: 1rem 0; }
-        .step { margin-bottom: 1.5rem; position: relative; }
-        .step::before { content: ""; position: absolute; left: -1.9rem; top: 0.5rem; width: 12px; height: 12px; background: #3b82f6; border-radius: 50%; }
-        code { background: #f1f5f9; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; }
-        .copy-btn { background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem; margin-top: 10px; }
-        .copy-btn:hover { background: #2563eb; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seaport Smiles — ISB System</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --teal: #2d8f8f;
+    --teal-light: #e8f5f5;
+    --gold: #c4973a;
+    --gold-light: #fdf6e8;
+    --coral: #d4634a;
+    --coral-light: #fdf0ed;
+    --sage: #4a7c59;
+    --sage-light: #edf5ef;
+    --purple: #6d28d9;
+    --purple-light: #ede9fe;
+    --blue: #1d4ed8;
+    --blue-light: #dbeafe;
+    --cream: #faf8f4;
+    --white: #ffffff;
+    --text: #1a2744;
+    --muted: #6b7a99;
+    --border: #e2e4ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+  header { background: var(--navy); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; }
+  header h1 { font-family: 'DM Serif Display', serif; color: var(--white); font-size: 22px; }
+  header span { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; }
+  .container { max-width: 880px; margin: 0 auto; padding: 48px 24px; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .card { background: var(--white); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 14px; overflow: hidden; }
+  .card-header { display: flex; align-items: center; gap: 14px; padding: 18px 22px; cursor: pointer; user-select: none; transition: background 0.15s; }
+  .card-header:hover { background: var(--cream); }
+  .card-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .icon-teal { background: var(--teal-light); }
+  .icon-gold { background: var(--gold-light); }
+  .icon-coral { background: var(--coral-light); }
+  .icon-sage { background: var(--sage-light); }
+  .icon-navy { background: rgba(26,39,68,0.08); }
+  .icon-purple { background: var(--purple-light); }
+  .card-title-group { flex: 1; }
+  .card-title { font-weight: 600; font-size: 14.5px; color: var(--navy); line-height: 1.3; }
+  .card-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .badge { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; flex-shrink: 0; }
+  .badge-weekly { background: var(--teal-light); color: var(--teal); }
+  .badge-triggered { background: var(--gold-light); color: var(--gold); }
+  .badge-text { background: var(--purple-light); color: var(--purple); }
+  .badge-email { background: var(--blue-light); color: var(--blue); }
+  .badge-hard { background: var(--coral-light); color: var(--coral); }
+  .badge-concept { background: rgba(26,39,68,0.08); color: var(--navy); }
+  .badge-autopilot { background: #fef3c7; color: #92400e; }
+  .chevron { color: var(--muted); font-size: 11px; transition: transform 0.2s; flex-shrink: 0; }
+  .card-body { display: none; padding: 18px 22px 22px; border-top: 1px solid var(--border); }
+  .card-body.open { display: block; }
+  .card-body p { font-size: 13.5px; line-height: 1.7; color: #374466; }
+  .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-box { width: 17px; height: 17px; border: 2px solid var(--border); border-radius: 4px; flex-shrink: 0; margin-top: 2px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+  .check-box.checked { background: var(--teal); border-color: var(--teal); color: white; }
+  .checklist-text { font-size: 13.5px; line-height: 1.6; color: #374466; flex: 1; }
+  .checklist-text.completed { text-decoration: line-through; color: var(--muted); }
+  .sub-note { font-size: 12px; color: var(--muted); margin-top: 4px; font-style: italic; line-height: 1.5; }
+  .message-box { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-top: 14px; white-space: pre-wrap; font-size: 13px; line-height: 1.75; color: #374466; }
+  .copy-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 7px 14px; background: var(--navy); color: white; border: none; border-radius: 6px; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
+  .copy-btn:hover { opacity: 0.85; }
+  .copy-btn.copied { background: var(--teal); }
+  .subject-line { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; margin-top: 4px; }
+  .subject-value { font-size: 13.5px; font-weight: 600; color: var(--navy); margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .status-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; align-items: center; }
+  .status-chip { font-size: 12px; padding: 3px 11px; border-radius: 20px; font-weight: 500; }
+  .chip-before { background: var(--coral-light); color: var(--coral); }
+  .chip-arrow { color: var(--muted); font-size: 15px; }
+  .chip-after { background: var(--sage-light); color: var(--sage); }
+  .section { margin-bottom: 40px; }
+  .intro-block { background: var(--navy); border-radius: 12px; padding: 28px 32px; margin-bottom: 40px; }
+  .intro-block h2 { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 10px; color: white; }
+  .intro-block p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+  .pipeline { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 14px; }
+  .pipe-step { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 5px 11px; font-size: 11.5px; font-weight: 500; color: white; }
+  .pipe-arrow { color: rgba(255,255,255,0.35); font-size: 13px; }
+  .timeline-wrap { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 14px 0; background: white; }
+  .timeline-row { display: flex; }
+  .timeline-step { flex: 1; padding: 12px 14px; border-right: 1px solid var(--border); }
+  .timeline-step:last-child { border-right: none; }
+  .tl-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 5px; }
+  .tl-title { font-size: 12.5px; font-weight: 600; color: var(--navy); line-height: 1.4; }
+  .tl-time { font-size: 11.5px; color: var(--teal); font-weight: 600; margin-top: 4px; }
+  .tl-owner { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .alert-box { border-radius: 8px; padding: 13px 16px; margin: 10px 0; font-size: 13px; line-height: 1.6; }
+  .alert-teal { background: var(--teal-light); border-left: 3px solid var(--teal); color: #1a4f4f; }
+  .alert-coral { background: var(--coral-light); border-left: 3px solid var(--coral); color: #7a2e1e; }
+  .alert-gold { background: var(--gold-light); border-left: 3px solid var(--gold); color: #6b4a0f; }
+  .alert-purple { background: var(--purple-light); border-left: 3px solid var(--purple); color: #3b0764; }
+  .case-ladder { margin: 8px 0; }
+  .case-step { display: flex; align-items: flex-start; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .case-step:last-child { border-bottom: none; }
+  .case-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .dot-coral { background: var(--coral); }
+  .dot-gold { background: var(--gold); }
+  .dot-teal { background: var(--teal); }
+  .dot-sage { background: var(--sage); }
+  .dot-navy { background: var(--navy); }
+  .case-name { font-size: 13px; font-weight: 600; color: var(--navy); width: 185px; flex-shrink: 0; line-height: 1.4; }
+  .case-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+  .rt { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 14px; border-radius: 8px; overflow: hidden; }
+  .rt th { background: var(--navy); color: white; padding: 9px 13px; text-align: left; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .rt td { padding: 9px 13px; border-bottom: 1px solid var(--border); color: #374466; vertical-align: top; font-size: 13px; }
+  .rt tr:last-child td { border-bottom: none; }
+  .st-miss { color: var(--coral); font-weight: 600; }
+  .st-pend { color: var(--gold); font-weight: 600; }
+  .st-ok { color: var(--sage); font-weight: 600; }
+
+  /* AutoPilot Campaign Sequence */
+  .campaign-sequence { margin: 16px 0; }
+  .campaign-day { margin-bottom: 20px; }
+  .campaign-day-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .day-bubble { background: var(--navy); color: white; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.04em; flex-shrink: 0; }
+  .day-bubble.urgent { background: var(--coral); }
+  .day-bubble.warning { background: var(--gold); }
+  .day-bubble.critical { background: #7f1d1d; }
+  .day-desc { font-size: 12px; color: var(--muted); font-style: italic; }
+  .campaign-items { display: flex; flex-direction: column; gap: 8px; margin-left: 8px; padding-left: 16px; border-left: 2px solid var(--border); }
+  .campaign-item { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; display: flex; align-items: flex-start; gap: 10px; }
+  .ci-type { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 12px; flex-shrink: 0; margin-top: 1px; }
+  .ci-email { background: var(--blue-light); color: var(--blue); }
+  .ci-text { background: var(--purple-light); color: var(--purple); }
+  .ci-task { background: var(--gold-light); color: var(--gold); }
+  .ci-status { background: var(--sage-light); color: var(--sage); }
+  .ci-content { font-size: 13px; color: #374466; line-height: 1.5; flex: 1; }
+  .ci-content strong { color: var(--navy); }
+  .campaign-spec-box { background: var(--navy); border-radius: 10px; padding: 18px 22px; margin-bottom: 20px; }
+  .campaign-spec-box .spec-row { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 10px; }
+  .campaign-spec-box .spec-item { }
+  .campaign-spec-box .spec-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
+  .campaign-spec-box .spec-value { font-size: 13px; font-weight: 600; color: white; }
+
+  .nav-tabs { display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
+  .nav-tab { padding: 8px 18px; border-radius: 8px; font-size: 12.5px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: white; color: var(--muted); transition: all 0.15s; }
+  .nav-tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+  .tab-section { display: none; }
+  .tab-section.active { display: block; }
+
+  @media (max-width: 640px) {
+    header { padding: 20px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .container { padding: 24px 14px; }
+    .card-header { padding: 14px; flex-wrap: wrap; }
+    .card-body { padding: 14px; }
+    .timeline-row { flex-direction: column; }
+    .timeline-step { border-right: none; border-bottom: 1px solid var(--border); }
+    .case-name { width: 130px; }
+    .campaign-spec-box .spec-row { gap: 16px; }
+  }
+</style>
 </head>
 <body>
-    <div class="card">
-        <h1>ISB Workflow System <span class="status-badge">Ready to Implement</span></h1>
-        <p><strong>Owner:</strong> Lena (TC) | <strong>Rule:</strong> 3-Week Minimum Runway</p>
-        
-        <h2>The 10 Business Day Rule</h2>
-        <p>Clearance must be received 10 BD before the ISB appointment. If not received by Day 14 of the countdown, the appointment <strong>must</strong> be moved.</p>
 
-        <h2>AutoPilot Sequence</h2>
-        <div class="timeline">
-            <div class="step"><strong>Day 0:</strong> ISB Created. Send Early Intervention Email/Text. Set Wave to "Awaiting Clearance."</div>
-            <div class="step"><strong>Day 4:</strong> Gentle Check-in Text.</div>
-            <div class="step"><strong>Day 7:</strong> URGENT window (24hrs left). Call patient if no response.</div>
-            <div class="step"><strong>Day 14:</strong> HARD RESCHEDULE. Move appointment in Wave.</div>
-        </div>
-        
-        <button class="copy-btn" onclick="alert('Templates are in the source code! Use CMD+F to find specific messages.')">View Message Templates</button>
+<header>
+  <h1>Seaport Smiles — ISB System</h1>
+  <span>TC Reference Guide</span>
+</header>
+
+<div class="container">
+
+  <div class="intro-block">
+    <h2>ISB Pipeline Overview</h2>
+    <p>Full reference for the Invisalign Start Bond workflow — clinical timeline, AutoPilot campaign spec, TC checklists, case readiness statuses, and all patient communications.</p>
+    <div class="pipeline">
+      <div class="pipe-step">NPE + Contract</div><div class="pipe-arrow">→</div>
+      <div class="pipe-step">ISB Reserved</div><div class="pipe-arrow">→</div>
+      <div class="pipe-step">AutoPilot Fires</div><div class="pipe-arrow">→</div>
+      <div class="pipe-step">Clearance Received</div><div class="pipe-arrow">→</div>
+      <div class="pipe-step">Rx + ClinCheck</div><div class="pipe-arrow">→</div>
+      <div class="pipe-step">CRS + Approve</div><div class="pipe-arrow">→</div>
+      <div class="pipe-step">Fabrication (10 BD)</div><div class="pipe-arrow">→</div>
+      <div class="pipe-step">ISB Confirmed</div>
     </div>
+  </div>
+
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="switchTab('autopilot')">🤖 AutoPilot Campaign</div>
+    <div class="nav-tab" onclick="switchTab('timeline')">⏱ Clinical Timeline</div>
+    <div class="nav-tab" onclick="switchTab('checklists')">📋 TC Checklists</div>
+    <div class="nav-tab" onclick="switchTab('comms')">💬 All Messages</div>
+  </div>
+
+  <!-- TAB: AUTOPILOT -->
+  <div class="tab-section active" id="tab-autopilot">
+
+    <div class="section">
+      <div class="section-label">AutoPilot Campaign — Build Spec</div>
+
+      <div class="campaign-spec-box">
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em;">Campaign Settings</div>
+        <div class="spec-row">
+          <div class="spec-item"><div class="spec-label">Campaign Name</div><div class="spec-value">ISB Clearance Chase</div></div>
+          <div class="spec-item"><div class="spec-label">Trigger</div><div class="spec-value">ISB appointment created in Wave</div></div>
+          <div class="spec-item"><div class="spec-label">Require Approval</div><div class="spec-value">No — auto-run</div></div>
+          <div class="spec-item"><div class="spec-label">Auto-Stop Trigger</div><div class="spec-value">Status changes to "Needs Rx / Review"</div></div>
+          <div class="spec-item"><div class="spec-label">Tab Location</div><div class="spec-value">Campaign Builder → Custom</div></div>
+        </div>
+      </div>
+
+      <div class="alert-box alert-purple">
+        <strong>How auto-stop works:</strong> When TC updates the Lab Case status to "Needs Rx / Review" upon receiving clearance, the campaign cancels automatically and no further messages fire. If clearance arrives between any two campaign items, the patient receives nothing further. TC does not need to manually cancel.
+      </div>
+
+      <div class="campaign-sequence" style="margin-top:20px;">
+
+        <!-- DAY 0 -->
+        <div class="campaign-day">
+          <div class="campaign-day-header">
+            <div class="day-bubble">Day 0</div>
+            <div class="day-desc">ISB appointment created → campaign fires immediately</div>
+          </div>
+          <div class="campaign-items">
+            <div class="campaign-item">
+              <div class="ci-type ci-task">Staff Task</div>
+              <div class="ci-content"><strong>Assigned to: TC</strong><br>ISB scheduled for [patient name] — ISB date: [date]. Send dental clearance form to dentist on file today. If no dentist on file, ask patient upon next contact. Set Lab Case status to "Awaiting Clearance."</div>
+            </div>
+            <div class="campaign-item">
+              <div class="ci-type ci-email">Email</div>
+              <div class="ci-content"><strong>To: Patient</strong><br>Subject: "Your Invisalign start — quick update from us"<br>Early intervention email — clearance explained, form offered, collaborative tone. <em>See Messages tab.</em></div>
+            </div>
+            <div class="campaign-item">
+              <div class="ci-type ci-text">Text</div>
+              <div class="ci-content"><strong>To: Patient</strong><br>Early intervention text — warm, explains the clearance need, offers to help. <em>See Messages tab.</em></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 4 -->
+        <div class="campaign-day">
+          <div class="campaign-day-header">
+            <div class="day-bubble">Day 4</div>
+            <div class="day-desc">Light nudge — plenty of time, just checking in</div>
+          </div>
+          <div class="campaign-items">
+            <div class="campaign-item">
+              <div class="ci-type ci-text">Text</div>
+              <div class="ci-content"><strong>To: Patient</strong><br>Quick check-in — did the form reach the dentist? Offer to resend or reach out directly. Low pressure. <em>See Messages tab.</em></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 7 -->
+        <div class="campaign-day">
+          <div class="campaign-day-header">
+            <div class="day-bubble warning">Day 7</div>
+            <div class="day-desc">3 weeks out — minimum runway. 24-hour window before appointment moves.</div>
+          </div>
+          <div class="campaign-items">
+            <div class="campaign-item">
+              <div class="ci-type ci-text">Text</div>
+              <div class="ci-content"><strong>To: Patient</strong><br>Urgent — start is now exactly 3 weeks away. 24 hours or appointment moves. Direct but not cold. <em>See Messages tab.</em></div>
+            </div>
+            <div class="campaign-item">
+              <div class="ci-type ci-email">Email</div>
+              <div class="ci-content"><strong>To: Patient</strong><br>Subject: "Your Invisalign start is at risk — we need to hear from you today"<br>Urgent email — explains the hard deadline, gives 3 easy options to act now. <em>See Messages tab.</em></div>
+            </div>
+            <div class="campaign-item">
+              <div class="ci-type ci-task">Staff Task</div>
+              <div class="ci-content"><strong>Assigned to: TC</strong><br>Clearance still missing at Day 7 — call patient directly today. If no answer, leave voicemail and send follow-up text. If clearance not received by tomorrow, reschedule using hard reschedule template.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 14 -->
+        <div class="campaign-day">
+          <div class="campaign-day-header">
+            <div class="day-bubble critical">Day 14</div>
+            <div class="day-desc">Appointment is being rescheduled — no ambiguity, no exceptions.</div>
+          </div>
+          <div class="campaign-items">
+            <div class="campaign-item">
+              <div class="ci-type ci-text">Text</div>
+              <div class="ci-content"><strong>To: Patient</strong><br>Hard reschedule text — appointment is moving, explains why, gives patient clear next step to get back on schedule. <em>See Messages tab.</em></div>
+            </div>
+            <div class="campaign-item">
+              <div class="ci-type ci-email">Email</div>
+              <div class="ci-content"><strong>To: Patient</strong><br>Subject: "An update on your Invisalign start — from [TC name]"<br>Hard reschedule email — personal, transparent, appointment moved, path forward clear. <em>See Messages tab.</em></div>
+            </div>
+            <div class="campaign-item">
+              <div class="ci-type ci-task">Staff Task</div>
+              <div class="ci-content"><strong>Assigned to: TC</strong><br>RESCHEDULE NOW — move [patient name]'s ISB appointment. Do not wait for patient response. Update Wave, update Lab Case note, confirm new date with patient once clearance is received.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Build Steps -->
+      <div class="card" style="margin-top:8px;">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-purple">🛠️</div>
+          <div class="card-title-group">
+            <div class="card-title">How to Build This in Wave AutoPilot</div>
+            <div class="card-meta">Step-by-step build instructions</div>
+          </div>
+          <span class="badge badge-autopilot">Setup</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="alert-box alert-teal" style="margin-bottom:16px;">
+            Access AutoPilot from the main Wave screen → Campaign Builder tab → Custom tab → click + to add new campaign.
+          </div>
+          <div class="checklist-item">
+            <div class="check-box" onclick="toggleCheck(this)"></div>
+            <div><div class="checklist-text"><strong>Step 1 — Create the Campaign</strong><br>Name: "ISB Clearance Chase" · Trigger: ISB appointment created · Add description · Click Save</div></div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-box" onclick="toggleCheck(this)"></div>
+            <div><div class="checklist-text"><strong>Step 2 — Activate the Campaign</strong><br>Click the Inactive button → changes to Active. Blue dot will appear next to campaign name.</div></div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-box" onclick="toggleCheck(this)"></div>
+            <div><div class="checklist-text"><strong>Step 3 — Add Campaign Items</strong><br>Click + on right side of campaign to add each item. For each: choose Type → fill Details → set When → click Done → check Active box.</div></div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-box" onclick="toggleCheck(this)"></div>
+            <div>
+              <div class="checklist-text"><strong>Step 4 — Set Timing for Each Item</strong></div>
+              <div class="sub-note">Day 0 items: When = No Delay</div>
+              <div class="sub-note">Day 4 text: When = 4 Days After Trigger</div>
+              <div class="sub-note">Day 7 items: When = 7 Days After Trigger</div>
+              <div class="sub-note">Day 14 items: When = 14 Days After Trigger</div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-box" onclick="toggleCheck(this)"></div>
+            <div><div class="checklist-text"><strong>Step 5 — Add Status Change Stop Trigger</strong><br>Add a Campaign Item → Type: Status Change · New Status: "Needs Rx / Review" · When: triggered by status update. This auto-cancels remaining items when clearance is received.</div></div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-box" onclick="toggleCheck(this)"></div>
+            <div><div class="checklist-text"><strong>Step 6 — Add Message Content</strong><br>For Email items: complete Details section first, then click Email button to enter content before clicking Done. For Text items: paste message into Text Message box. Use merge fields for patient name, dentist name etc.</div></div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-box" onclick="toggleCheck(this)"></div>
+            <div><div class="checklist-text"><strong>Step 7 — Activate All Campaign Items</strong><br>Each item must be individually activated. Check the box under the Active column next to each Campaign Item Name.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: CLINICAL TIMELINE -->
+  <div class="tab-section" id="tab-timeline">
+    <div class="section">
+      <div class="section-label">Clinical Timeline &amp; Framework</div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-navy">⏱️</div>
+          <div class="card-title-group">
+            <div class="card-title">Why 3 Weeks Is the Rule — The Real Timeline</div>
+            <div class="card-meta">Clinical rationale for the minimum clearance window</div>
+          </div>
+          <span class="badge badge-concept">Reference</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="alert-box alert-teal">
+            <strong>The rule:</strong> Dental clearance must be received at least 3 weeks before the ISB appointment. This is the minimum time required for Dr. Osborn to plan the case AND for Align to fabricate and ship the aligners. There is no flexibility below this threshold.
+          </div>
+          <div class="timeline-wrap" style="margin-top:14px;">
+            <div class="timeline-row">
+              <div class="timeline-step">
+                <div class="tl-label">Phase 1</div>
+                <div class="tl-title">Clearance received + scan validity confirmed</div>
+                <div class="tl-time">Day 0</div>
+                <div class="tl-owner">TC → notifies Dr. Osborn</div>
+              </div>
+              <div class="timeline-step">
+                <div class="tl-label">Phase 2</div>
+                <div class="tl-title">Rx submitted → ClinCheck returned → review + revisions</div>
+                <div class="tl-time">~1 week</div>
+                <div class="tl-owner">Dr. Osborn + Align CADCAM</div>
+              </div>
+              <div class="timeline-step">
+                <div class="tl-label">Phase 3</div>
+                <div class="tl-title">CRS completed → ClinCheck approved</div>
+                <div class="tl-time">End of week 1</div>
+                <div class="tl-owner">Dr. Osborn</div>
+              </div>
+              <div class="timeline-step">
+                <div class="tl-label">Phase 4</div>
+                <div class="tl-title">Fabrication + UPS shipping to office</div>
+                <div class="tl-time">10 business days</div>
+                <div class="tl-owner">Align Technologies</div>
+              </div>
+            </div>
+          </div>
+          <div class="alert-box alert-coral">
+            <strong>Why no planning happens before clearance:</strong> Clearance confirms two things at once — (1) periodontal and restorative health is stable, and (2) tooth anatomy is not changing. If a patient has pending restorative work, the tooth shape can change — invalidating the existing scan. A new scan would be required and any planning done on the old scan cannot transfer. Dr. Osborn would redo all work at no additional compensation. Clearance is the gate.
+          </div>
+          <div class="alert-box alert-gold" style="margin-top:0;">
+            <strong>Revision cycles add time:</strong> ~75% of cases require at least one feedback round to Align's CADCAM team. Each cycle adds 1–4 business days. The 1-week planning estimate assumes best-case.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-teal">📊</div>
+          <div class="card-title-group">
+            <div class="card-title">Case Readiness Status Ladder</div>
+            <div class="card-meta">Wave Ortho Lab Case status — TC keeps this current at all times</div>
+          </div>
+          <span class="badge badge-concept">Reference</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="case-ladder">
+            <div class="case-step"><div class="case-dot dot-coral"></div><div class="case-name">Awaiting Clearance</div><div class="case-desc">Contract signed. ISB reserved. Clearance requested but not received. No clinical planning in progress. AutoPilot campaign running.</div></div>
+            <div class="case-step"><div class="case-dot dot-gold"></div><div class="case-name">Clearance Received</div><div class="case-desc">Dental clearance in hand. Scan confirmed valid. TC notified Dr. Osborn via Wave Task. AutoPilot campaign still running until TC updates to next status.</div></div>
+            <div class="case-step"><div class="case-dot dot-teal"></div><div class="case-name">Needs Rx / Review</div><div class="case-desc">TC updated status → AutoPilot campaign auto-cancels. Dr. Osborn flagged. Rx to be submitted or ClinCheck in progress.</div></div>
+            <div class="case-step"><div class="case-dot dot-sage"></div><div class="case-name">Planning Complete</div><div class="case-desc">CRS completed. ClinCheck approved. Case sent to fabrication. 10 BD clock starts.</div></div>
+            <div class="case-step"><div class="case-dot dot-navy"></div><div class="case-name">Ready to Start</div><div class="case-desc">Aligners received in office. Logged in Wave. ISB appointment confirmed.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-navy">🔒</div>
+          <div class="card-title-group">
+            <div class="card-title">The Start Reservation Concept</div>
+            <div class="card-meta">Not yet implemented in Wave — documented for future decision</div>
+          </div>
+          <span class="badge badge-concept">Concept</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <p style="margin-bottom:12px;">The root cause of ISB chaos: scheduling a confirmed appointment before clinical readiness. The fix is separating <strong>reservation</strong> from <strong>confirmation</strong>. Patient leaves with a date and feels committed. Internally it's a reservation — converts to confirmed ISB only when clearance + ClinCheck + aligners are in office.</p>
+          <div style="background:var(--teal-light);border-radius:8px;padding:14px 18px;margin:10px 0;">
+            <div style="font-size:11px;font-weight:600;color:var(--teal);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;">Proposed Wave Status</div>
+            <div style="font-size:14px;font-weight:600;color:var(--navy);">START RESERVED – AWAITING CLEARANCE</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:3px;">Converts to ISB CONFIRMED when: clearance received + ClinCheck approved + aligners in office</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: CHECKLISTS -->
+  <div class="tab-section" id="tab-checklists">
+    <div class="section">
+      <div class="section-label">TC Checklists</div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-teal">📋</div>
+          <div class="card-title-group">
+            <div class="card-title">Monday Start Readiness Review</div>
+            <div class="card-meta">TC (Lena) · Every Monday · ~15 minutes</div>
+          </div>
+          <span class="badge badge-weekly">Weekly</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <p style="margin-bottom:12px;">Pull all ISB appointments in the next 3 weeks. Review each against the readiness table. This is the human backstop to AutoPilot — confirms the campaign is working and catches anything that slipped.</p>
+          <table class="rt">
+            <thead><tr><th>Patient</th><th>ISB Date</th><th>Clearance</th><th>Lab Status</th><th>Action Required</th></tr></thead>
+            <tbody>
+              <tr><td>[Name]</td><td>[Date]</td><td class="st-miss">Missing</td><td>Awaiting Clearance</td><td>Contact patient + dentist immediately</td></tr>
+              <tr><td>[Name]</td><td>[Date]</td><td class="st-pend">Pending</td><td>Awaiting Clearance</td><td>Follow up — confirm dentist received form</td></tr>
+              <tr><td>[Name]</td><td>[Date]</td><td class="st-ok">Received</td><td>Needs Rx / Review</td><td>✅ Confirm Dr. Osborn notified</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:16px;">
+            <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Pull all ISB appointments in next 3 weeks from Wave Ortho</div></div></div>
+            <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">For each: check Lab Case status. If "Awaiting Clearance" → contact patient and/or dentist</div></div></div>
+            <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">If ISB within 10 business days and no clearance → reschedule. Use hard reschedule template.</div><div class="sub-note">10 BD = minimum fabrication + shipping from ClinCheck approval. No exceptions.</div></div></div>
+            <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Update Lab Case status + Wave note for any changes made during review</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-gold">⚡</div>
+          <div class="card-title-group">
+            <div class="card-title">Clearance Received — Lab Tracker Update</div>
+            <div class="card-meta">TC · Same day as receipt · Triggers AutoPilot campaign cancellation</div>
+          </div>
+          <span class="badge badge-triggered">Triggered</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="status-row">
+            <span class="status-chip chip-before">Awaiting Clearance</span>
+            <span class="chip-arrow">→</span>
+            <span class="status-chip chip-after">Needs Rx / Review</span>
+          </div>
+          <div class="alert-box alert-purple">Updating status to "Needs Rx / Review" automatically cancels the AutoPilot campaign. No further messages will fire to the patient.</div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Confirm clearance includes: dentist name, license number, restorative + periodontal status</div></div></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Assess scan validity — any pending restorative work that changes tooth shape?</div><div class="sub-note">If yes → new scan required before Rx. Flag Dr. Osborn immediately.</div><div class="sub-note">If no → scan valid. Proceed.</div></div></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Upload clearance to Wave · Note: "Dental clearance received — [date]. Scan valid: yes / no."</div></div></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Update Lab Case: "Awaiting Clearance" → "Needs Rx / Review" (this cancels AutoPilot)</div></div></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Create Wave Task for Dr. Osborn: "Clearance received for [Patient Name] — ISB [date]. Scan valid. Ready for Rx."</div></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-sage">📝</div>
+          <div class="card-title-group">
+            <div class="card-title">ISB Booked — TC Setup Steps</div>
+            <div class="card-meta">TC · At contract signing / ISB appointment scheduled</div>
+          </div>
+          <span class="badge badge-triggered">Triggered</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Check dental clearance status. If already received → update Lab Case immediately, skip AutoPilot.</div></div></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Verbally explain clearance timeline to patient before they leave</div><div class="sub-note">"We need your dental clearance at least 3 weeks before your start. Once we have it, Dr. Osborn finalizes your plan and Invisalign takes 2 weeks to fabricate your aligners. If we don't get it in time we'll need to move your date — AutoPilot will send you reminders along the way."</div></div></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><div><div class="checklist-text">Set Lab Case status to "Awaiting Clearance" → AutoPilot campaign will fire automatically</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: MESSAGES -->
+  <div class="tab-section" id="tab-comms">
+    <div class="section">
+      <div class="section-label">All Patient Messages — In Sequence</div>
+
+      <!-- Day 0 Email -->
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-teal">✉️</div>
+          <div class="card-title-group">
+            <div class="card-title">Day 0 — Early Intervention Email</div>
+            <div class="card-meta">Fires immediately when ISB appointment is created · Auto-run</div>
+          </div>
+          <span class="badge badge-email">Email</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="subject-line">Subject Line</div>
+          <div class="subject-value">Your Invisalign start — quick update from us</div>
+          <div class="message-box" id="msg-d0-email">Hi [Name],
+
+It's [TC name] — I was just going through our upcoming appointments and your start date on [date] caught my eye, so I wanted to get ahead of this with you.
+
+We're still waiting on your dental clearance from [dentist name], and I want to be transparent about why that matters so much at this stage. Once we have it, Dr. Osborn reviews everything and builds out your full treatment plan — and then Invisalign takes about two weeks to actually fabricate your aligners. So there's more happening behind the scenes than it might seem, and we need a little runway to make sure everything is ready and right before your appointment.
+
+Here's where we are: if we can get the clearance in the next few days, we'll do everything we can to keep your original date. If it's going to take a little longer, I'd rather we move your appointment now and protect the experience than rush anything or have you come in and not be ready to start.
+
+A couple of easy options:
+- I can send you the clearance form directly to forward to [dentist name] — sometimes that's the fastest path
+- Or if you want to call their office, just let them know Seaport Smiles needs a dental clearance confirming your restorative and periodontal status
+
+Either way, I'm here to help make this as easy as possible. Just reply back or text us at [practice number] and we'll figure it out together.
+
+Talk soon,
+[TC name]
+Seaport Smiles</div>
+          <button class="copy-btn" onclick="copyMsg('msg-d0-email', this)">⎘ Copy Email</button>
+        </div>
+      </div>
+
+      <!-- Day 0 Text -->
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-teal">💬</div>
+          <div class="card-title-group">
+            <div class="card-title">Day 0 — Early Intervention Text</div>
+            <div class="card-meta">Fires immediately when ISB appointment is created · Auto-run</div>
+          </div>
+          <span class="badge badge-text">Text</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="message-box" id="msg-d0-text">Hey [Name]! It's [TC name] from Seaport Smiles 😊 So I was just looking ahead at your start appointment on [date] and wanted to reach out before it snuck up on us. We still haven't received your dental clearance from [dentist name / your dentist], and that's actually a really important piece — Dr. Osborn needs it to finalize your treatment plan, and then Invisalign needs about two weeks just to fabricate your aligners. So if we don't have it soon, we won't be able to get everything ready in time for your appointment.
+
+I don't want to just move your date without talking to you first — can we figure this out together? If you can reach out to [dentist name] this week and ask them to send over the clearance form, we may still be able to make your original date work. I can even send you the form to forward to them if that's easier.
+
+Just let me know what's most helpful and we'll go from there! 🙌</div>
+          <button class="copy-btn" onclick="copyMsg('msg-d0-text', this)">⎘ Copy Text</button>
+        </div>
+      </div>
+
+      <!-- Day 4 Text -->
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-teal">💬</div>
+          <div class="card-title-group">
+            <div class="card-title">Day 4 — Light Nudge Text</div>
+            <div class="card-meta">4 days after ISB created · Low pressure check-in · Auto-run</div>
+          </div>
+          <span class="badge badge-text">Text</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="message-box" id="msg-d4-text">Hey [Name]! Just a quick check-in from [TC name] at Seaport Smiles 😊 We're still waiting on your dental clearance from [dentist name] — just wanted to make sure you got our message from earlier this week and that the form made it to them okay. If you need us to resend anything or want us to reach out to the office directly, just say the word. We've got you! 🙌</div>
+          <button class="copy-btn" onclick="copyMsg('msg-d4-text', this)">⎘ Copy Text</button>
+        </div>
+      </div>
+
+      <!-- Day 7 Text -->
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-gold">💬</div>
+          <div class="card-title-group">
+            <div class="card-title">Day 7 — Urgent Text</div>
+            <div class="card-meta">3 weeks to ISB · 24-hour window stated clearly · Auto-run</div>
+          </div>
+          <span class="badge badge-text">Text</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="message-box" id="msg-d7-text">Hey [Name], it's [TC name] from Seaport Smiles. I want to be straight with you — we still haven't received your dental clearance from [dentist name], and your start date is now 3 weeks out. That's exactly the minimum runway we need to get your aligners planned and fabricated in time. If we don't have it within the next 24 hours, we're going to have to move your appointment. I really don't want to do that. Can you reach out to [dentist name] today? Even a quick call asking them to send the form over could make all the difference. I'm here if you need anything — just reply or call us at [practice number]. 💙</div>
+          <button class="copy-btn" onclick="copyMsg('msg-d7-text', this)">⎘ Copy Text</button>
+        </div>
+      </div>
+
+      <!-- Day 7 Email -->
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-gold">✉️</div>
+          <div class="card-title-group">
+            <div class="card-title">Day 7 — Urgent Email</div>
+            <div class="card-meta">3 weeks to ISB · Appointment at risk · Auto-run</div>
+          </div>
+          <span class="badge badge-email">Email</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="subject-line">Subject Line</div>
+          <div class="subject-value">Your Invisalign start is at risk — we need to hear from you today</div>
+          <div class="message-box" id="msg-d7-email">Hi [Name],
+
+I want to be really transparent with you because I think you deserve that.
+
+We still haven't received your dental clearance from [dentist name], and as of today your start appointment is exactly 3 weeks away. That's the minimum time we need — not a buffer, not a cushion, the actual minimum — for Dr. Osborn to finalize your treatment plan and for Invisalign to fabricate and ship your aligners.
+
+If we don't have your clearance within the next 24 hours, we're going to have to move your start date. I've been holding off on doing that because I wanted to give you every opportunity to make the original date work, but I can't hold it much longer without putting your experience at risk.
+
+Here's what I need from you today:
+- Call [dentist name]'s office and ask them to send your dental clearance form to Seaport Smiles
+- Or reply to this email and I'll reach out to them directly on your behalf
+- Or just text us at [practice number] and we'll figure it out together right now
+
+I'm rooting for your original date. Let's make it happen.
+
+[TC name]
+Seaport Smiles</div>
+          <button class="copy-btn" onclick="copyMsg('msg-d7-email', this)">⎘ Copy Email</button>
+        </div>
+      </div>
+
+      <!-- Day 14 Text -->
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-coral">💬</div>
+          <div class="card-title-group">
+            <div class="card-title">Day 14 — Hard Reschedule Text</div>
+            <div class="card-meta">Appointment is moving · No ambiguity · Auto-run</div>
+          </div>
+          <span class="badge badge-hard">Hard Reschedule</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="message-box" id="msg-d14-text">Hey [Name], it's [TC name] from Seaport Smiles. I wanted to reach out personally about your start appointment on [date]. We've been waiting on your dental clearance from [dentist name], and at this point we're inside the window we need to get your aligners fabricated in time — Invisalign alone takes about two weeks once Dr. Osborn submits your prescription.
+
+I know this isn't the message you were hoping for, but I'd rather be honest with you now than have you come in on [date] and not be ready to actually start. So I'm going to move your appointment to protect that experience for you.
+
+The good news — the moment we receive your clearance, we can get you back on the schedule and moving again. Can you reach out to [dentist name] today and ask them to send it over? I can resend the form if that helps. We're right there with you on this. 💙</div>
+          <button class="copy-btn" onclick="copyMsg('msg-d14-text', this)">⎘ Copy Text</button>
+        </div>
+      </div>
+
+      <!-- Day 14 Email -->
+      <div class="card">
+        <div class="card-header" onclick="toggle(this)">
+          <div class="card-icon icon-coral">✉️</div>
+          <div class="card-title-group">
+            <div class="card-title">Day 14 — Hard Reschedule Email</div>
+            <div class="card-meta">Appointment is moving · Personal and transparent · Auto-run</div>
+          </div>
+          <span class="badge badge-hard">Hard Reschedule</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="subject-line">Subject Line</div>
+          <div class="subject-value">An update on your Invisalign start — from [TC name]</div>
+          <div class="message-box" id="msg-d14-email">Hi [Name],
+
+I wanted to reach out personally because I've been keeping an eye on your upcoming start appointment on [date] — and I want to be upfront with you about where we are.
+
+We haven't yet received your dental clearance from [dentist name], and I have to be honest: we're now inside the window we need to get everything prepared for your start. Here's what that timeline looks like behind the scenes — once we have your clearance, Dr. Osborn builds your full treatment plan and submits your Invisalign prescription, and then fabrication alone takes about two weeks. Without the clearance in hand right now, we can't get your aligners ready in time for [date].
+
+I've gone ahead and moved your appointment so we're not in a situation where you come in and we can't actually start. That's not the experience we want for you, and it's not what you signed up for.
+
+Here's what happens next — and this part is simple: as soon as your clearance comes through, we'll get you right back on the schedule. If you can contact [dentist name] today or tomorrow and ask them to send it over, we can typically turn things around quickly from there. I can resend the clearance form directly to you or to their office — just say the word.
+
+I know rescheduling isn't what you were hoping to hear, and I genuinely appreciate your patience. We're committed to making sure your start is done right.
+
+Reach out anytime — reply here or text us at [practice number].
+
+Warmly,
+[TC name]
+Seaport Smiles</div>
+          <button class="copy-btn" onclick="copyMsg('msg-d14-email', this)">⎘ Copy Email</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggle(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open');
+    chevron.style.transform = body.classList.contains('open') ? 'rotate(180deg)' : '';
+  }
+  function toggleCheck(box) {
+    box.classList.toggle('checked');
+    box.innerHTML = box.classList.contains('checked') ? '✓' : '';
+    const text = box.parentElement.querySelector('.checklist-text');
+    if (text) text.classList.toggle('completed');
+  }
+  function copyMsg(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const label = id.includes('email') ? 'Email' : 'Text';
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '⎘ Copy ' + label; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+  function switchTab(name) {
+    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
 </body>
 </html>
