@@ -1,110 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light">
+  
+  <title>Indications for Jaw Surgery: Class II, Class III & Asymmetry | Seaport Smiles</title>
+  <meta name="description" content="Educational guide on the indications for orthognathic jaw surgery. Learn about treatments for Class II, Class III, recessed jaw, facial asymmetry, sleep apnea, and genioplasty.">
+  <meta name="keywords" content="jaw surgery, class III, class II, recessed jaw, midface deficient, asymmetry, chin asymmetry, jaw asymmetry, sleep apnea, retrognathic, genioplasty, chin insufficiency">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS VARIABLES + RESET */
+    :root {
+      color-scheme: light only;
+
+      /* Backgrounds */
+      --warm-white:  #FFFFFF;
+      --cream:       #EEF3FB;   
+      --soft-bg:     #DDE8F6;   
+
+      /* Brand colours */
+      --navy:        #08142A;   
+      --navy-light:  #162340;
+      --blue:        #1A6FFF;   
+      --blue-light:  #5A9FFF;
+      --blue-pale:   #7DBFFF;   
+
+      /* Text */
+      --text-body:   #0E2038;   
+      --text-light:  #2E4A64;   
+      --muted:       #5A6E85;   
+
+      /* Borders */
+      --border:      #BDD0E8;
+
+      /* Dark section gradient */
+      --dark-grad: linear-gradient(135deg, #061020 0%, #0C1E45 60%, #0F2A5C 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { color-scheme: light; scroll-behavior: smooth; }
+
+    body {
+      background: var(--warm-white) !important;
+      color: var(--text-body);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* TYPOGRAPHY UTILITIES */
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+    }
     
-    <title>Indications for Jaw Surgery: Class II, Class III & Asymmetry | Seaport Smiles</title>
-    <meta name="description" content="Educational guide on the indications for orthognathic jaw surgery. Learn about treatments for Class II, Class III, recessed jaw, facial asymmetry, sleep apnea, and genioplasty.">
-    <meta name="keywords" content="jaw surgery, class III, class II, recessed jaw, midface deficient, asymmetry, chin asymmetry, jaw asymmetry, sleep apnea, retrognathic, genioplasty, chin insufficiency">
+    h1 em {
+      color: #7DBFFF;
+      font-style: italic;
+    }
 
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8fafc; color: #1e293b; padding: 40px; line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        
-        .top-nav { display: flex; gap: 24px; margin-bottom: 40px; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; flex-wrap: wrap; }
-        .top-nav a { text-decoration: none; color: #64748b; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s ease; }
-        .top-nav a:hover { color: #2563eb; }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: #061020;
+      margin-top: 56px;
+      margin-bottom: 24px;
+    }
+    
+    article h2:first-of-type {
+      margin-top: 0;
+    }
 
-        h1 { color: #0f172a; margin-bottom: 16px; font-weight: 700; font-size: 32px; }
-        h2 { color: #2563eb; margin-top: 0; font-size: 22px; margin-bottom: 12px; }
-        p.intro { color: #64748b; font-size: 18px; margin-bottom: 32px; }
+    h3.eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
 
-        /* TABLE OF CONTENTS (CLICKABLE NAVIGATION) */
-        .toc { background: #f1f5f9; padding: 24px; border-radius: 12px; margin-bottom: 40px; }
-        .toc h3 { margin-top: 0; color: #0f172a; font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
-        .toc ul { list-style: none; padding: 0; margin: 0; }
-        .toc li { margin-bottom: 10px; }
-        .toc a { text-decoration: none; color: #2563eb; font-weight: 500; }
-        .toc a:hover { text-decoration: underline; }
+    article p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-body);
+      margin-bottom: 22px;
+    }
 
-        /* CONTENT CARDS */
-        .card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 24px; background: #ffffff; scroll-margin-top: 40px; }
-        .card p { margin: 0 0 16px 0; color: #475569; font-size: 16px; }
-        .card p:last-child { margin-bottom: 0; }
-        
-        .tag { font-size: 11px; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; display: inline-block; margin-bottom: 16px; }
-        .tag-clinical { background: #dbeafe; color: #1e40af; }
-        .tag-goal { background: #dcfce7; color: #166534; }
+    /* NAV */
+    nav {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .logo span {
+      color: var(--blue);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--navy);
+    }
+    .nav-cta {
+      background: var(--navy);
+      color: #FFFFFF !important;
+      padding: 10px 20px;
+      border-radius: 2px;
+    }
+    .nav-cta:hover {
+      background: var(--blue);
+    }
 
-        .btn-primary { display: inline-block; background: #2563eb; color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s ease; margin-top: 20px; text-align: center; }
-        .btn-primary:hover { background: #1d4ed8; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        
-        <nav class="top-nav" aria-label="Main Navigation">
-            <a href="https://www.seaportsmiles.com/">Home</a>
-            <a href="https://www.seaportsmiles.com/services">Services</a>
-            <a href="https://www.seaportsmiles.com/about">About</a>
-            <a href="https://www.seaportsmiles.com/about">Blog</a>
-        </nav>
+    /* HERO */
+    .hero {
+      background: var(--dark-grad);
+      padding: 100px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(43,127,255,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #7DBFFF;
+      border: 1px solid rgba(90,159,255,0.55);
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.92);
+      max-width: 600px;
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+    }
+    .hero-meta strong {
+      color: rgba(255,255,255,0.95);
+      font-weight: 500;
+    }
 
-        <header>
-            <h1>Indications & Goals of Orthognathic Surgery</h1>
-            <p class="intro">An educational guide to understanding why jaw surgery is recommended, the clinical conditions it treats, and the aesthetic and functional goals of treatment.</p>
-        </header>
-
-        <nav class="toc" aria-label="Table of Contents">
-            <h3>Jump to a Topic:</h3>
-            <ul>
-                <li><a href="#what-is-orthognathic">What is Orthognathic Surgery?</a></li>
-                <li><a href="#class-iii">Class III: Prognathism & Midface Deficiency</a></li>
-                <li><a href="#class-ii">Class II: Retrognathic & Recessed Jaws</a></li>
-                <li><a href="#vertical-excess">Vertical Maxillary Excess & Deep Bite</a></li>
-                <li><a href="#asymmetry-apnea">Facial Asymmetry, Genioplasty & Sleep Apnea</a></li>
-            </ul>
-        </nav>
-
-        <main>
-            <article id="what-is-orthognathic" class="card">
-                <span class="tag tag-goal">The Foundation</span>
-                <h2>What is Orthognathic Surgery?</h2>
-                <p>Orthognathic surgery is utilized principally for skeletodental syndromes that are beyond the control of conventional orthodontic procedures[cite: 9]. While traditional orthodontics focuses mainly on tooth movement, surgical intervention adds another dimension by repositioning the facial bones while it moves the teeth[cite: 20].</p>
-                <p>The overarching objective is to maximize the aesthetic and functional result[cite: 192]. While correcting the occlusal (bite) relationships is a major clinical endpoint [cite: 60], achieving a favorable soft tissue change is often the primary goal of the treatment plan[cite: 231].</p>
-            </article>
-
-            <article id="class-iii" class="card">
-                <span class="tag tag-clinical">Clinical Indication</span>
-                <h2>Class III: Prognathism & Midface Deficiency</h2>
-                <p>A Class III skeletodental malocclusion can represent a prognathic (prominent) mandible, a retrognathic (deficient) maxilla, or a combination of both[cite: 1088, 1089, 1090, 1091].</p>
-                <p>The most commonly cited condition is mandibular prognathism, which is characterized by a Class III dental pattern and a concave facial profile[cite: 10]. In cases where the midface is deficient, a maxillary advancement is performed to pull the upper jaw forward, restoring facial balance and correcting the illusion of an overgrown lower jaw.</p>
-            </article>
-
-            <article id="class-ii" class="card">
-                <span class="tag tag-clinical">Clinical Indication</span>
-                <h2>Class II: Retrognathic & Recessed Jaws</h2>
-                <p>Class II malocclusions are frequently related to mandibular retrognathism (a recessed lower jaw)[cite: 599]. This skeletal discrepancy generally presents in two ways:</p>
-                <p>First, it can result from an actual short or "underdeveloped" mandible[cite: 600]. Second, it can occur when a relatively normal mandible is retrognathically positioned because an overdeveloped maxillary region causes the lower jaw to rotate downward and backward[cite: 601, 602]. Surgery is used to advance the mandible or impact the maxilla, establishing a strong, harmonious profile.</p>
-            </article>
-
-            <article id="vertical-excess" class="card">
-                <span class="tag tag-clinical">Clinical Indication</span>
-                <h2>Vertical Maxillary Excess & Deep Bite</h2>
-                <p>Vertical maxillary excess occurs when the upper jaw overdevelops vertically. This often results in a "long face" syndrome and is frequently accompanied by an anterior open bite[cite: 622, 623]. Conversely, patients may present with a deep bite "short face" syndrome, where the mandibular dento-alveolar region appears abnormally short, resulting in a disproportionately small lower face height[cite: 607, 608].</p>
-            </article>
-
-            <article id="asymmetry-apnea" class="card">
-                <span class="tag tag-goal">Comprehensive Care</span>
-                <h2>Facial Asymmetry, Genioplasty & Sleep Apnea</h2>
-                <p>Orthognathic procedures go beyond simple bite correction. For patients with chin insufficiency, a sliding genioplasty can be utilized to advance the chin (pogonion) independently of the jaw to dramatically improve the profile[cite: 859].</p>
-                <p>Additionally, jaw surgery is highly effective at correcting severe jaw asymmetry and facial imbalances. For patients suffering from obstructive sleep apnea, advancing the jaws surgically can physically expand the airway, providing significant, long-term health benefits.</p>
-            </article>
-        </main>
-
-        <a href="https://www.seaportsmiles.com/contact" class="btn-primary" style="display: block;">Schedule a Surgical Consultation</a>
-
-    </div>
-</body>
-</html>
+    /* MAIN LAYOUT */
+    .main {
+      max
