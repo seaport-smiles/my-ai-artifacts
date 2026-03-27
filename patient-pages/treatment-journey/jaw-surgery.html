@@ -11,31 +11,72 @@
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8fafc; color: #1e293b; padding: 40px; line-height: 1.6; }
         .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        h1 { color: #0f172a; margin-bottom: 8px; font-weight: 700; font-size: 32px; }
-        h2 { color: #2563eb; margin-top: 32px; font-size: 22px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
-        p { color: #475569; font-size: 16px; }
+        
+        /* NEW TOP NAVIGATION BAR */
+        .top-nav { display: flex; gap: 24px; margin-bottom: 40px; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; flex-wrap: wrap; }
+        .top-nav a { text-decoration: none; color: #64748b; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s ease; }
+        .top-nav a:hover { color: #2563eb; }
+
+        h1 { color: #0f172a; margin-bottom: 16px; font-weight: 700; font-size: 32px; }
+        p.intro { color: #64748b; font-size: 18px; margin-bottom: 32px; }
+
+        /* BEAUTIFUL BLUE BUTTON */
+        .btn-primary { display: inline-block; background: #2563eb; color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s ease; margin-bottom: 32px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+        .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3); }
+
+        /* BEAUTIFUL CARDS FOR YOUR SECTIONS */
+        .card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 20px; transition: box-shadow 0.2s ease; background: #ffffff; }
+        .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.04); border-color: #cbd5e1; }
+        .card h2 { color: #2563eb; margin-top: 0; font-size: 20px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;}
+        
+        /* THE TAGS YOU ASKED FOR */
+        .tag { font-size: 11px; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; }
+        .tag-issue { background: #fef3c7; color: #92400e; }
+        .tag-treatment { background: #dbeafe; color: #1e40af; }
+        .tag-health { background: #dcfce7; color: #166534; }
+
+        .card p { margin: 0; color: #475569; font-size: 15px; }
     </style>
 </head>
 <body>
     <div class="container">
         
-        <h1>Corrective Jaw Surgery (Orthognathic) & Genioplasty Guide</h1>
-        <p>Welcome to the Seaport Smiles patient guide for corrective jaw surgery. Here you will find information on timelines, preparation, and what to expect.</p>
+        <nav class="top-nav">
+            <a href="https://www.seaportsmiles.com/">Home</a>
+            <a href="https://www.seaportsmiles.com/services">Services</a>
+            <a href="https://www.seaportsmiles.com/about">About</a>
+            <a href="https://www.seaportsmiles.com/about">Blog</a>
+        </nav>
 
-        <h2>Treating Class II & Class III Malocclusions</h2>
-        <p>[Insert your content about correcting underbites, overbites, and skeletal discrepancies here.]</p>
+        <h1>Corrective Jaw Surgery & Genioplasty Guide</h1>
+        <p class="intro">Welcome to the Seaport Smiles patient guide for corrective jaw surgery. Here you will find information on timelines, preparation, and what to expect.</p>
 
-        <h2>Solutions for a Recessed Jaw (Retrognathic) & Midface Deficiency</h2>
-        <p>[Insert your content about advancing the lower jaw or bringing the midface forward here.]</p>
+        <a href="https://www.seaportsmiles.com/contact" class="btn-primary">Book a Visit</a>
 
-        <h2>Correcting Facial, Jaw, and Chin Asymmetry</h2>
-        <p>[Insert your content about aligning the jaws for facial balance and symmetry here.]</p>
+        <div class="card">
+            <h2>Treating Class II & Class III Malocclusions <span class="tag tag-issue">Bite Correction</span></h2>
+            <p>Learn about correcting underbites, overbites, and skeletal discrepancies to achieve a balanced, functional bite.</p>
+        </div>
 
-        <h2>Genioplasty for Chin Insufficiency</h2>
-        <p>[Insert your content about isolated chin procedures and profile improvements here.]</p>
+        <div class="card">
+            <h2>Solutions for a Recessed Jaw & Midface Deficiency <span class="tag tag-treatment">Orthognathic</span></h2>
+            <p>Understand the process of advancing the lower jaw (retrognathic) or bringing the midface forward for improved facial harmony.</p>
+        </div>
 
-        <h2>Airway Expansion & Sleep Apnea Relief</h2>
-        <p>[Insert your content about how orthognathic surgery can open the airway to treat sleep apnea here.]</p>
+        <div class="card">
+            <h2>Correcting Facial, Jaw, and Chin Asymmetry <span class="tag tag-issue">Facial Balance</span></h2>
+            <p>Explore surgical options for aligning the jaws to correct asymmetry and restore natural facial proportions.</p>
+        </div>
+
+        <div class="card">
+            <h2>Genioplasty for Chin Insufficiency <span class="tag tag-treatment">Genioplasty</span></h2>
+            <p>Discover how isolated chin procedures can dramatically improve your profile and address chin recession.</p>
+        </div>
+
+        <div class="card">
+            <h2>Airway Expansion & Sleep Apnea Relief <span class="tag tag-health">Airway Health</span></h2>
+            <p>Learn how corrective jaw surgery can open the airway, providing long-term relief for obstructive sleep apnea.</p>
+        </div>
 
     </div>
 </body>
