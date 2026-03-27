@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+
+<title>Sleep Apnea & Orthodontics | Evidence-Based Airway Guide | Seaport Smiles Boston</title>
+<meta name="description" content="A patient-friendly, evidence-based guide to sleep-disordered breathing, obstructive sleep apnea, and orthodontics by Dr. Ella Osborn at Seaport Smiles.">
+<meta name="keywords" content="sleep apnea orthodontics, airway orthodontics, sleep-disordered breathing, obstructive sleep apnea, pediatric sleep apnea, orthodontist sleep apnea, Seaport Smiles Boston">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light only;
+    --cream: #EEF3FB;
+    --warm-white: #FFFFFF;
+    --navy: #08142A;
+    --navy-light: #162340;
+    --blue: #1A6FFF;
+    --blue-light: #5A9FFF;
+    --muted: #5A6E85;
+    --border: #BDD0E8;
+    --soft-bg: #DDE8F6;
+    --text-body: #0D1F35;
+    --text-light: #2E4A64;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { color-scheme: light; scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white) !important;
+    color: var(--text-body);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  nav {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--border);
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+  }
+  .logo span { color: var(--blue); }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--navy);
+    color: #FFFFFF !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--blue) !important; color: white !important; }
+
+  .hero {
+    background: linear-gradient(135deg, #061020 0%, #0C1E45 60%, #0F2A5C 100%);
+    padding: 100px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(43,127,255,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7DBFFF;
+    border: 1px solid rgba(90,159,255,0.55);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #FFFFFF;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #7DBFFF;
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.92);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.72);
+    text-transform: uppercase;
+  }
+  .hero-meta-item strong {
+    color: #FFFFFF;
+    font-weight: 400;
+  }
+  .hero-meta-divider { color: rgba(255,255,255,0.3); }
+
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 48px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 72px;
+    align-items: start;
+    background: #FFFFFF;
+  }
+
+  article h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #061020;
+    margin: 56px 0 20px;
+    letter-spacing: -0.01em;
+  }
+  article h2:first-child { margin-top: 0; }
+  article h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin: 40px 0 14px;
+  }
+  article p {
+    font-size: 17px;
+    line-height: 1.85;
+    color: #0E2038;
+    margin-bottom: 22px;
+  }
+  article ul {
+    margin: 16px 0 28px 0;
+    padding: 0;
+    list-style: none;
+  }
+  article ul li {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #0E2038;
+    padding: 10px 0 10px 28px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  article ul li:last-child { border-bottom: none; }
+  article ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-size: 14px;
+  }
+
+  .pullquote {
+    background: var(--soft-bg);
+    border-left: 3px solid var(--blue);
+    padding: 28px 32px;
+    margin: 40px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .pullquote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px !important;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5 !important;
+    color: #061020 !important;
+    margin: 0 !important;
+  }
+
+  .contrast-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 36px 0;
+  }
+  .contrast-col {
+    padding: 28px 28px;
+    background: #FFFFFF;
+  }
+  .contrast-col:first-child { background: #ECF2FA; }
+  .contrast-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .contrast-col:first-child .contrast-label { color: #4A6278; }
+  .contrast-col:last-child .contrast-label { color: var(--blue); }
+  .contrast-col ul { margin: 0; }
+  .contrast-col ul li {
+    font-size: 14px;
+    line-height: 1.65;
+    padding: 8px 0 8px 22px;
+    border-bottom: 1px solid var(--border);
+    color: #0E2038;
+    font-weight: 400;
+  }
+  .contrast-col:first-child ul li::before { content: '✕'; color: #8AAABF; font-size: 11px; position: absolute; left: 0; }
+  .contrast-col:last-child ul li::before { content: '✓'; color: var(--blue); font-size: 13px; position: absolute; left: 0; }
+  .contrast-col ul li { position: relative; }
+
+  .case-study {
+    background: linear-gradient(135deg, #061020 0%, #0C1E45 60%, #0F2A5C 100%);
+    border-radius: 6px;
+    padding: 40px 40px;
+    margin: 48px 0;
+    color: white;
+  }
+  .case-study-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #7DBFFF;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .case-study h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #FFFFFF;
+    letter-spacing: normal;
+    text-transform: none;
+    margin-bottom: 16px;
+  }
+  .case-study p {
+    font-size: 15px !important;
+    color: rgba(255,255,255,0.95) !important;
+    line-height: 1.75 !important;
+    margin-bottom: 16px !important;
+  }
+  .case-study-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    color: #7DBFFF;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-top: 6px;
+    display: block;
+  }
+
+  .cta-block {
+    background: var(--soft-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 44px 40px;
+    margin: 56px 0 0;
+    text-align: center;
+  }
+  .cta-block h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #061020;
+    margin: 0 0 14px !important;
+  }
+  .cta-block p {
+    font-size: 16px;
+    color: #2E4A64;
+    margin-bottom: 28px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--blue);
+    color: #FFFFFF;
+    padding: 16px 36px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: #0A55CC; }
+
+  .sidebar { position: sticky; top: 100px; }
+  .sidebar-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .sidebar-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #061020;
+  }
+  .sidebar-card p {
+    font-size: 14px;
+    color: #2E4A64;
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .sidebar-btn {
+    display: block;
+    text-align: center;
+    background: var(--blue);
+    color: white;
+    padding: 13px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+  .sidebar-btn:hover { opacity: 0.85; }
+  .toc-list {
+    list-style: none;
+  }
+  .toc-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-list li:last-child { border-bottom: none; }
+  .toc-list a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #2E4A64;
+    transition: color 0.2s;
+  }
+  .toc-list a:hover { color: var(--blue); }
+  .toc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--border);
+    margin-right: 8px;
+  }
+
+  footer {
+    background: linear-gradient(135deg, #061020 0%, #0C1E45 100%);
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    padding: 36px 48px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  footer a { color: #7DBFFF; text-decoration: none; }
+
+  @media (max-width: 860px) {
+    .main { grid-template-columns: 1fr; gap: 48px; background: #FFFFFF; }
+    .sidebar { position: static; }
+    nav { padding: 16px 24px; background: #FFFFFF; }
+    .hero { padding: 64px 24px 56px; }
+    .main { padding: 48px 24px; }
+    .nav-links { display: none; }
+    .contrast-box { grid-template-columns: 1fr; }
+    .case-study { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Seaport <span>Smiles</span></div>
+  <ul class="nav-links">
+    <li><a href="https://www.seaportsmiles.com/services">Services</a></li>
+    <li><a href="https://www.seaportsmiles.com/about">About</a></li>
+    <li><a href="https://www.seaportsmiles.com/blog">Blog</a></li>
+    <li><a href="https://www.seaportsmiles.com/contact" class="nav-cta">Book a Visit</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Patient Education Guide · Orthodontics</span>
+    <h1>Sleep Apnea, Airway, and Orthodontics:<br><em>What Patients Deserve to Know</em></h1>
+    <p class="hero-sub">There is a lot of marketing noise around airway orthodontics. This guide explains what sleep-disordered breathing is, where orthodontics can help, and where the science says we need to be careful.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>6 min read</strong></div>
+      <div class="hero-meta-divider">·</div>
+      <div class="hero-meta-item">By <strong>Dr. Ella Osborn</strong></div>
+      <div class="hero-meta-divider">·</div>
+      <div class="hero-meta-item">Seaport Smiles</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <article>
+
+    <h2>The #1 thing patients should understand</h2>
+    <p>Sleep-disordered breathing is a medical issue, not just a dental one. It exists on a spectrum that ranges from habitual snoring to obstructive sleep apnea, also known as OSA. OSA is the more severe form, involving repeated collapse of the airway during sleep.</p>
+    <p>That matters because poor breathing during sleep is not just about being tired. It can affect concentration, daytime function, cardiovascular health, growth in children, and overall quality of life.</p>
+
+    <div class="pullquote">
+      <p>"Orthodontists can play an important role in screening and referral, but diagnosis and medical management of sleep-disordered breathing belong in collaboration with physicians."</p>
+    </div>
+
+    <p>At Seaport Smiles, we take this topic seriously and carefully. We do not overpromise. We do not tell patients that every narrow arch is sleep apnea or that every airway-looking scan proves a diagnosis. We start with evidence, which is exactly how this conversation should be handled.</p>
+    <p>This guide will explain where orthodontics fits, what the newest evidence says, and how to think clearly about airway claims.</p>
+
+    <h2>What sleep-disordered breathing actually is</h2>
+    <p>Sleep-disordered breathing is an umbrella term. It includes a range of conditions from simple snoring all the way to obstructive sleep apnea. These conditions are complex and do not all have the same cause. Some are driven more by anatomy. Others are influenced by muscle tone, neurologic control of breathing, weight, age, and other medical factors.</p>
+    <p>That is one reason this topic gets oversimplified so often. Patients are sometimes told there is one single jaw shape or one single orthodontic fix behind all breathing problems. The science does not support that.</p>
+
+    <h3>The most important rule</h3>
+    <p>Orthodontists do not diagnose sleep apnea. A formal diagnosis requires a physician, and polysomnography, together with clinical symptoms, remains the gold standard for diagnosing obstructive sleep apnea.</p>
+
+    <h2>Where orthodontics fits in the real world</h2>
+    <p>Orthodontists are in a unique position because we see the face, the jaws, the bite, the teeth, and the overall growth pattern. That makes us well-positioned to notice possible risk factors and guide patients toward the right next step.</p>
+    <p>Our role is usually threefold:</p>
+    <ul>
+      <li>Screen for risk using history, examination, and validated questionnaires</li>
+      <li>Recognize when symptoms or findings merit referral to a physician</li>
+      <li>Collaborate with medical colleagues after diagnosis when orthodontic treatment has a legitimate role</li>
+    </ul>
+
+    <h2>Old marketing claims vs. evidence-based reality</h2>
+    <p>This is where patients often get mixed messages. The current literature does not support many of the broad claims floating around online.</p>
+
+    <div class="contrast-box">
+      <div class="contrast-col">
+        <div class="contrast-label">Overstated claims</div>
+        <ul>
+          <li>Every narrow jaw predicts sleep apnea</li>
+          <li>Orthodontics can prevent future sleep apnea</li>
+          <li>CBCT airway volume proves diagnosis</li>
+          <li>Frenectomy is an airway treatment</li>
+          <li>Extractions cause sleep apnea</li>
+          <li>Distalizing teeth inherently closes the airway</li>
+        </ul>
+      </div>
+      <div class="contrast-col">
+        <div class="contrast-label">What the evidence supports</div>
+        <ul>
+          <li>No single craniofacial pattern reliably identifies SDB</li>
+          <li>No orthodontic intervention has been shown to prevent SDB</li>
+          <li>Scans are not diagnostic for sleep apnea</li>
+          <li>Routine frenectomy is not supported for SDB treatment</li>
+          <li>There is no proven causal link between extractions and SDB</li>
+          <li>Current evidence does not show distalization inherently constricts the airway</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>This does not mean orthodontics is irrelevant. It means the field has to stay disciplined. Orthodontics can contribute to care, but it should not be sold as a stand-alone cure for a medical disorder.</p>
+
+    <h2>What about children?</h2>
+    <p>Children are different from adults in important ways. Mild sleep-disordered breathing in younger children can sometimes improve naturally as they grow into adolescence. That said, not every child simply outgrows it, and certain groups, including boys and children who are overweight, may be less likely to improve on their own.</p>
+    <p>That is why timing, diagnosis, and medical collaboration matter. Treatment decisions should not be based on fear or blanket rules. They should be based on what is actually happening in that child.</p>
+
+    <h3>What parents should know</h3>
+    <ul>
+      <li>Snoring, mouth breathing, and chronic nasal obstruction deserve attention</li>
+      <li>Validated questionnaires can help identify risk, but they do not diagnose OSA</li>
+      <li>Orthodontic treatment alone is not considered a stand-alone therapy for pediatric sleep apnea</li>
+      <li>When orthodontics is part of care, it should be integrated with a physician-led plan</li>
+    </ul>
+
+    <div class="case-study">
+      <div class="case-study-label">What the white paper makes clear</div>
+      <h3>The goal is better judgment, not bigger claims</h3>
+      <p>The 2026 AAO update reinforces a more disciplined role for orthodontists: screen carefully, refer appropriately, collaborate with physicians, and avoid using airway imaging or trendy procedures as proof of diagnosis or cure.</p>
+      <p>That is a good thing for patients. It moves this conversation away from hype and toward thoughtful, interdisciplinary care.</p>
+      <div class="case-study-stats">
+        <div class="stat">
+          <span class="stat-number">1</span>
+          <span class="stat-label">Medical diagnosis required</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">0</span>
+          <span class="stat-label">Orthodontic cures proven</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Core roles: screening + referral</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">1</span>
+          <span class="stat-label">Team approach recommended</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Questions patients ask us all the time</h2>
+
+    <h3>Can a scan diagnose sleep apnea?</h3>
+    <p>No. CBCT and cephalometric imaging can show anatomy, but they do not diagnose sleep apnea and they should not be used as proof that a patient has OSA.</p>
+
+    <h3>Does expanding the palate cure sleep apnea?</h3>
+    <p>Not as a blanket rule. Palatal expansion can be a legitimate orthodontic treatment when there is a real skeletal reason for it, and in some physician-diagnosed patients it may be part of interdisciplinary management. But current evidence does not support using it prophylactically to prevent future sleep-disordered breathing.</p>
+
+    <h3>What about tongue-tie release?</h3>
+    <p>Current evidence does not support routine frenectomy or frenotomy for prevention or treatment of sleep-disordered breathing.</p>
+
+    <h3>Do extractions cause sleep apnea?</h3>
+    <p>There is no substantive evidence supporting a causal relationship between orthodontic extractions and sleep-disordered breathing.</p>
+
+    <h2>What this means for your care at Seaport Smiles</h2>
+    <p>If airway or sleep concerns come up in your consultation, we will talk about them directly and responsibly. We may screen for risk. We may recommend that you speak with a physician or sleep specialist. And if orthodontics could play a role, we will explain that role honestly.</p>
+    <p>The right approach is not to pretend orthodontics has no place here. The right approach is to keep it evidence-based and collaborative.</p>
+
+    <div class="cta-block">
+      <h2>Concerned about sleep, airway, or mouth breathing?<br>Let’s talk through it clearly.</h2>
+      <p>Book a consultation with Dr. Osborn. We can review your history, discuss whether a medical referral makes sense, and explain where orthodontics may or may not fit into the bigger picture.</p>
+      <a href="https://www.seaportsmiles.com/contact" class="cta-btn">Book Your Consultation</a>
+    </div>
+
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h4>Want a thoughtful evaluation?</h4>
+      <p>We can help you sort out what is orthodontic, what is medical, and what deserves a referral rather than a sales pitch.</p>
+      <a href="https://www.seaportsmiles.com/contact" class="sidebar-btn">Book a Consultation</a>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>In this guide</h4>
+      <ul class="toc-list">
+        <li><a href="#"><span class="toc-num">01</span> What sleep-disordered breathing is</a></li>
+        <li><a href="#"><span class="toc-num">02</span> Where orthodontics fits</a></li>
+        <li><a href="#"><span class="toc-num">03</span> Hype vs. evidence</a></li>
+        <li><a href="#"><span class="toc-num">04</span> What about children?</a></li>
+        <li><a href="#"><span class="toc-num">05</span> Common patient questions</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>Related questions</h4>
+      <ul class="toc-list">
+        <li><a href="#">Can Invisalign help sleep apnea?</a></li>
+        <li><a href="#">Does mouth breathing always mean airway problems?</a></li>
+        <li><a href="#">What kind of doctor diagnoses OSA?</a></li>
+        <li><a href="#">Should my child have a sleep study?</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <p>© Seaport Smiles · <a href="https://www.seaportsmiles.com/contact">Book a Visit</a> · <a href="https://www.seaportsmiles.com/blog">Blog</a></p>
+</footer>
+
+</body>
+</html>
