@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ISB Workflow System | Staff Reference</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; color: #334155; max-width: 900px; margin: 0 auto; padding: 2rem; background: #f8fafc; }
+        .card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; margin-bottom: 2rem; }
+        h1 { color: #0f172a; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { color: #2563eb; margin-top: 1.5rem; }
+        .status-badge { display: inline-block; padding: 0.25rem 0.75rem; background: #dcfce7; color: #166534; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; }
+        .timeline { border-left: 4px solid #e2e8f0; padding-left: 1.5rem; margin: 1rem 0; }
+        .step { margin-bottom: 1.5rem; position: relative; }
+        .step::before { content: ""; position: absolute; left: -1.9rem; top: 0.5rem; width: 12px; height: 12px; background: #3b82f6; border-radius: 50%; }
+        code { background: #f1f5f9; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; }
+        .copy-btn { background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem; margin-top: 10px; }
+        .copy-btn:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>ISB Workflow System <span class="status-badge">Ready to Implement</span></h1>
+        <p><strong>Owner:</strong> Lena (TC) | <strong>Rule:</strong> 3-Week Minimum Runway</p>
+        
+        <h2>The 10 Business Day Rule</h2>
+        <p>Clearance must be received 10 BD before the ISB appointment. If not received by Day 14 of the countdown, the appointment <strong>must</strong> be moved.</p>
+
+        <h2>AutoPilot Sequence</h2>
+        <div class="timeline">
+            <div class="step"><strong>Day 0:</strong> ISB Created. Send Early Intervention Email/Text. Set Wave to "Awaiting Clearance."</div>
+            <div class="step"><strong>Day 4:</strong> Gentle Check-in Text.</div>
+            <div class="step"><strong>Day 7:</strong> URGENT window (24hrs left). Call patient if no response.</div>
+            <div class="step"><strong>Day 14:</strong> HARD RESCHEDULE. Move appointment in Wave.</div>
+        </div>
+        
+        <button class="copy-btn" onclick="alert('Templates are in the source code! Use CMD+F to find specific messages.')">View Message Templates</button>
+    </div>
+</body>
+</html>
