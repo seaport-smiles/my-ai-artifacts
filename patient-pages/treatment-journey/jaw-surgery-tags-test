@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+
+<title>Corrective Jaw Surgery & Genioplasty Guide | Seaport Smiles Boston</title>
+<meta name="description" content="Comprehensive guide to corrective jaw surgery. Explore treatments for Class II, Class III, recessed jaws, facial asymmetry, and sleep apnea at Seaport Smiles.">
+<meta name="keywords" content="jaw surgery, class III, class II, recessed jaw, midface deficient, asymmetry, chin asymmetry, jaw asymmetry, sleep apnea, retrognathic, genioplasty, chin insufficiency">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light only;
+    --cream: #EEF3FB;
+    --warm-white: #FFFFFF;
+    --navy: #08142A;
+    --navy-light: #162340;
+    --blue: #1A6FFF;
+    --blue-light: #5A9FFF;
+    --muted: #5A6E85;
+    --border: #BDD0E8;
+    --soft-bg: #DDE8F6;
+    --text-body: #0D1F35;
+    --text-light: #2E4A64;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { color-scheme: light; }
+
+  body {
+    background: var(--warm-white) !important;
+    color: var(--text-body);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* NAV */
+  nav {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--border);
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+  }
+  .logo span { color: var(--blue); }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--navy);
+    color: #FFFFFF !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--blue) !important; color: white !important; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #061020 0%, #0C1E45 60%, #0F2A5C 100%);
+    padding: 100px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(43,127,255,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7DBFFF;
+    border: 1px solid rgba(90,159,255,0.55);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #FFFFFF;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #7DBFFF;
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.92);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.72);
+    text-transform: uppercase;
+  }
+  .hero-meta-item strong {
+    color: #FFFFFF;
+    font-weight: 400;
+  }
+  .hero-meta-divider { color: rgba(255,255,255,0.3); }
+
+  /* MAIN LAYOUT */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 48px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 72px;
+    align-items: start;
+    background: #FFFFFF;
+  }
+
+  /* ARTICLE */
+  article h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #061020;
+    margin: 56px 0 20px;
+    letter-spacing: -0.01em;
+  }
+  article h2:first-child { margin-top: 0; }
+  article h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin: 40px 0 14px;
+  }
+  article p {
+    font-size: 17px;
+    line-height: 1.85;
+    color: #0E2038;
+    margin-bottom: 22px;
+  }
+  article ul {
+    margin: 16px 0 28px 0;
+    padding: 0;
+    list-style: none;
+  }
+  article ul li {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #0E2038;
+    padding: 10px 0 10px 28px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  article ul li:last-child { border-bottom: none; }
+  article ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-size: 14px;
+  }
+
+  /* PULLQUOTE */
+  .pullquote {
+    background: var(--soft-bg);
+    border-left: 3px solid var(--blue);
+    padding: 28px 32px;
+    margin: 40px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .pullquote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px !important;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5 !important;
+    color: #061020 !important;
+    margin: 0 !important;
+  }
+
+  /* CONTRAST BOX */
+  .contrast-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 36px 0;
+  }
+  .contrast-col {
+    padding: 28px 28px;
+    background: #FFFFFF;
+  }
+  .contrast-col:first-child { background: #ECF2FA; }
+  .contrast-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .contrast-col:first-child .contrast-label { color: #4A6278; }
+  .contrast-col:last-child .contrast-label { color: var(--blue); }
+  .contrast-col ul { margin: 0; }
+  .contrast-col ul li {
+    font-size: 14px;
+    line-height: 1.65;
+    padding: 8px 0 8px 22px;
+    border-bottom: 1px solid var(--border);
+    color: #0E2038;
+    font-weight: 400;
+  }
+  .contrast-col:first-child ul li::before { content: '✕'; color: #8AAABF; font-size: 11px; position: absolute; left: 0; }
+  .contrast-col:last-child ul li::before { content: '✓'; color: var(--blue); font-size: 13px; position: absolute; left: 0; }
+  .contrast-col ul li { position: relative; }
+
+  /* CASE STUDY BOX */
+  .case-study {
+    background: linear-gradient(135deg, #061020 0%, #0C1E45 60%, #0F2A5C 100%);
+    border-radius: 6px;
+    padding: 40px 40px;
+    margin: 48px 0;
+    color: white;
+  }
+  .case-study-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #7DBFFF;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .case-study h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #FFFFFF;
+    letter-spacing: normal;
+    text-transform: none;
+    margin-bottom: 16px;
+  }
+  .case-study p {
+    font-size: 15px !important;
+    color: rgba(255,255,255,0.95) !important;
+    line-height: 1.75 !important;
+    margin-bottom: 16px !important;
+  }
+  .case-study-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    color: #7DBFFF;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* CTA */
+  .cta-block {
+    background: var(--soft-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 44px 40px;
+    margin: 56px 0 0;
+    text-align: center;
+  }
+  .cta-block h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #061020;
+    margin: 0 0 14px !important;
+  }
+  .cta-block p {
+    font-size: 16px;
+    color: #2E4A64;
+    margin-bottom: 28px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--blue);
+    color: #FFFFFF;
+    padding: 16px 36px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: #0A55CC; }
+
+  /* SIDEBAR */
+  .sidebar { position: sticky; top: 100px; }
+  .sidebar-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .sidebar-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #061020;
+  }
+  .sidebar-card p {
+    font-size: 14px;
+    color: #2E4A64;
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .sidebar-btn {
+    display: block;
+    text-align: center;
+    background: var(--blue);
+    color: white;
+    padding: 13px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+  .sidebar-btn:hover { opacity: 0.85; }
+  .toc-list {
+    list-style: none;
+  }
+  .toc-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-list li:last-child { border-bottom: none; }
+  .toc-list a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #2E4A64;
+    transition: color 0.2s;
+  }
+  .toc-list a:hover { color: var(--blue); }
+  .toc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--border);
+    margin-right: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: linear-gradient(135deg, #061020 0%, #0C1E45 100%);
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    padding: 36px 48px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  footer a { color: #7DBFFF; text-decoration: none; }
+
+  @media (max-width: 860px) {
+    .main { grid-template-columns: 1fr; gap: 48px; background: #FFFFFF; }
+    .sidebar { position: static; }
+    nav { padding: 16px 24px; background: #FFFFFF; }
+    .hero { padding: 64px 24px 56px; }
+    .main { padding: 48px 24px; }
+    .nav-links { display: none; }
+    .contrast-box { grid-template-columns: 1fr; }
+    .case-study { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Seaport <span>Smiles</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#" class="nav-cta">Book a Visit</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Patient Decision Guide · Orthodontics</span>
+    <h1>Do You Really Need Braces<br>for <em>Jaw Surgery?</em></h1>
+    <p class="hero-sub">Most patients preparing for orthognathic (jaw) surgery assume metal braces are mandatory. They're not. Here's an honest look at what clear aligners can — and can't — do for this process.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>5 min read</strong></div>
+      <div class="hero-meta-divider">·</div>
+      <div class="hero-meta-item">By <strong>Dr. Ella Osborn</strong></div>
+      <div class="hero-meta-divider">·</div>
+      <div class="hero-meta-item">March 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <article>
+
+    <h2>The #1 question patients have</h2>
+    <p>You've been told you need jaw surgery — orthognathic surgery — to correct a bite issue, jaw alignment problem, facial asymmetry, or (probably the most important of all) sleep disordered breathing, also known as OSA (obstructive sleep apnea).</p>
+    <p>For many adults — especially those who already wore braces as a teenager — this feels like a major setback. Braces during a professional life, through a wedding, into a surgical recovery. It's a lot to ask.</p>
+
+    <div class="pullquote">
+      <p>"Orthognathic surgery is already a daunting proposition for most adult patients — especially if they need to wear fixed appliances through the process. Clear aligners can make this journey more reasonable."</p>
+    </div>
+
+    <p>Here's what most patients don't know: for most jaw surgery cases, clear aligners are a fully viable option. Not a compromise. Not a workaround. A legitimate, well-researched approach used by specialist orthodontists worldwide — including here at Seaport Smiles.</p>
+    <p>This guide will explain how it works, what to expect, and help you decide whether it's right for your situation.</p>
+
+    <h2>Why jaw surgery requires orthodontic preparation at all</h2>
+    <p>Orthognathic surgery repositions your jaw bones to correct your bite and improve facial balance. But here's the catch: your teeth have spent years adapting to wherever your jaws happen to be. Before the surgeon can move your jaws to their ideal position, an orthodontist needs to first <em>undo</em> those adaptations — a process called decompensation.</p>
+    <p>Think of it this way: if you've had a jaw discrepancy for years, your teeth have certainly tilted, shifted, or compensated to create the best possible bite given the circumstances. Decompensation reverses all of that, intentionally making your bite look <em>worse</em> in preparation for surgery — so that when your jaws are re-aligned into their ideal position, everything lines up properly.</p>
+    <p>After surgery, a second phase of orthodontic finishing and detailing settles the bite into its final, ideal position. This full process typically takes 12–24 months in total.</p>
+    
+    <h3>Why the wide range?</h3>
+    <p>Because everyone's bite and jaws are different. There is no cookie cutter stamp that treats everyone the same. A year is a pretty quick start to finish and Dr. Ella Osborn has even on occasion finished surgical cases in even less time, this takes a great patient and an expert specialist highly experienced in surgical cases, like Dr. Osborn.</p>
+
+    <h2>Old way vs. new way</h2>
+    <p>For most of orthodontic history, all of this was done with fixed metal appliances — brackets and wires bonded to your teeth for the duration of treatment. And for a long time, that was the only reliable option.</p>
+
+    <div class="contrast-box">
+      <div class="contrast-col">
+        <div class="contrast-label">Traditional approach</div>
+        <ul>
+          <li>Metal brackets bonded for 12–24 months</li>
+          <li>Wires, brackets, hooks for surgical fixation</li>
+          <li>Difficult to clean — especially post-surgery</li>
+          <li>More frequent in-office adjustments needed</li>
+          <li>Analog planning with less precise surgical preview</li>
+          <li>Limited ability to visualise surgical outcomes in advance</li>
+        </ul>
+      </div>
+      <div class="contrast-col">
+        <div class="contrast-label">Clear aligner approach</div>
+        <ul>
+          <li>Removable aligners — largely invisible</li>
+          <li>Temporary anchors used only at surgery</li>
+          <li>Easier oral hygiene, especially after surgery</li>
+          <li>Fewer overall appointments required</li>
+          <li>Full digital surgical simulation before you start</li>
+          <li>Precise 3D planning integrates orthodontics and surgery</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>The digital nature of clear aligner treatment is particularly powerful here. Your orthodontist creates a detailed digital treatment plan that visually simulates the surgical movement — called a "bite jump" — so both you and your surgeon can see exactly what arch coordination will look like before a single aligner is fabricated.</p>
+
+    <h2>What the treatment process looks like</h2>
+
+    <h3>Phase 1 — Presurgical Decompensation</h3>
+    <p>Your first set of aligners systematically decompensates your teeth over several months. The digital plan is developed collaboratively: your orthodontist proposes the movement goals, then meets virtually with your oral surgeon to confirm the plan aligns with the surgical objectives. This happens <em>before</em> a single aligner is made.</p>
+    <p>Approximately two months before your surgery date, you'll transition to passive aligners — aligners that maintain your decompensated position and allow any lagging tooth movements to fully express. This is also when your 3D-printed surgical splints are fabricated.</p>
+
+    <h3>Phase 2 — Surgery</h3>
+    <p>Going into surgery, you'll have no brackets, no wires, and no hardware in your mouth. Small temporary skeletal anchors (called TSADs) are placed during the surgery itself to hold your bite in position during recovery. Precision cutouts in your aligners allow elastic bands to attach to these anchors in the weeks that follow.</p>
+
+    <h3>Phase 3 — Postsurgical Finishing</h3>
+    <p>Aligners go back in as quickly as 48 hours after surgery — often significantly easier to manage than metal brackets during a period when your mouth and jaw are healing. Physical therapy begins around one month post-surgery to restore your range of motion, and a refinement scan is taken at approximately two months to order finishing aligners that detail your final bite.</p>
+
+    <div class="case-study">
+      <div class="case-study-label">Patient Example</div>
+      <h3>Class II, Deep Bite — Mandibular Advancement Surgery</h3>
+      <p>An 18-year-old patient presented with a Class II skeletal malocclusion and a significant overjet. Having previously worn traditional braces, he strongly preferred clear aligners for this phase of treatment. Treatment goals focused on leveling his lower curve of Spee and developing proper arch coordination for mandibular advancement surgery.</p>
+      <p>Forty-six aligners were used in the presurgical phase with weekly changes. Virtual surgical planning confirmed movements before any aligners were fabricated. Following surgery and a refinement phase, twenty-six finishing aligners completed his treatment.</p>
+      <div class="case-study-stats">
+        <div class="stat">
+          <span class="stat-number">20</span>
+          <span class="stat-label">Months total</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">9</span>
+          <span class="stat-label">Office visits</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">72</span>
+          <span class="stat-label">Total aligners</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">0</span>
+          <span class="stat-label">Brackets worn</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Is this right for your case? An honest guide.</h2>
+    <p>Clear aligners aren't the right tool for every jaw surgery case. Here's how we think about it at Seaport Smiles:</p>
+
+    <h3>Clear aligners work well when</h3>
+    <ul>
+      <li>Your case involves anteroposterior or vertical jaw discrepancies without severe transverse (width) issues</li>
+      <li>You don't require extraction of multiple teeth for decompensation — space closure is more challenging with aligners</li>
+      <li>Your surgeon is comfortable with the TSAD-based fixation protocol in place of traditional arch wires</li>
+      <li>You're committed to consistent wear — the approach requires patient compliance just as any orthodontic treatment does</li>
+    </ul>
+
+    <h3>Traditional braces may be preferable when</h3>
+    <ul>
+      <li>Extractions are needed for decompensation — braces offer superior space closure and root control</li>
+      <li>Complex transverse discrepancies require multi-piece maxillary surgery with expansion</li>
+      <li>Your oral surgeon specifically recommends fixed appliances for surgical fixation in your case</li>
+      <li>Previous clear aligner treatment produced poor tracking results</li>
+    </ul>
+
+    <p>The honest answer is: this deserves a real conversation with a clinician who has experience with both approaches. The decision isn't about which appliance is "better" in the abstract — it's about which is right for <em>your</em> specific anatomy, your surgical plan, and your life.</p>
+
+    <h2>What most patients tell us after</h2>
+    <p>Patients who complete jaw surgery with clear aligners consistently mention a few things that surprised them. Oral hygiene during recovery was far more manageable than they expected. The ability to see the full surgical simulation before committing to treatment gave them genuine confidence in the process. And the significantly lower number of office appointments — particularly during a period of active surgical recovery — made the whole experience feel more humane.</p>
+    <p>Orthognathic surgery changes lives. The ability to go through that process without metal brackets on your teeth for two years is, for many patients, what makes the decision to move forward feel possible at all.</p>
+
+    <div class="cta-block">
+      <h2>Considering jaw surgery?<br>Let's talk through your options.</h2>
+      <p>Book a complimentary consultation. We'll review your records, walk you through what decompensation would look like in your case, and give you an honest assessment of whether clear aligners are right for your surgery.</p>
+      <a href="#" class="cta-btn">Book Your Consultation</a>
+    </div>
+
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h4>Ready to find out if this applies to you?</h4>
+      <p>Book a no-pressure consultation with Dr. Osborn. We'll review your records and walk you through exactly what's possible.</p>
+      <a href="#" class="sidebar-btn">Book a Consultation</a>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>In this guide</h4>
+      <ul class="toc-list">
+        <li><a href="#"><span class="toc-num">01</span> Why jaw surgery needs orthodontic prep</a></li>
+        <li><a href="#"><span class="toc-num">02</span> Old way vs. new way</a></li>
+        <li><a href="#"><span class="toc-num">03</span> What the process looks like</a></li>
+        <li><a href="#"><span class="toc-num">04</span> Is this right for your case?</a></li>
+        <li><a href="#"><span class="toc-num">05</span> What patients tell us after</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>Related questions</h4>
+      <ul class="toc-list">
+        <li><a href="#">Invisalign vs braces: how to actually choose</a></li>
+        <li><a href="#">What is orthognathic surgery?</a></li>
+        <li><a href="#">How long does jaw surgery prep take?</a></li>
+        <li><a href="#">Does insurance cover jaw surgery?</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <p>© 2026 Seaport Smiles · <a href="#">Boston, MA</a> · <a href="#">Book a Visit</a> · <a href="#">Blog</a></p>
+</footer>
+
+</body>
+</html>
