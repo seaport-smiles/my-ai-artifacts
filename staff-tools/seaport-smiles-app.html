@@ -7,6 +7,7 @@
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone@7.22.5/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #F0F4F8; font-family: 'DM Sans', sans-serif; }
@@ -496,6 +497,35 @@ function postSlack(msg) {
   fetch(SLACK_HOOK, { method:"POST", mode:"no-cors", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:"payload="+encodeURIComponent(JSON.stringify({text:msg})) });
 }
 
+// ── SUPABASE (central completion log) ─────────────────────────────────────────
+// Publishable key is safe to expose client-side; the checklist_completions
+// table only accepts insert/select via RLS, no update/delete from the client.
+const SUPABASE_URL = "https://njwcxykpmxphdytsfqka.supabase.co";
+const SUPABASE_KEY  = "sb_publishable_RUqA_ifoIScfx5UJrdYUQw_uaFZfeEj";
+const sb = (window.supabase && window.supabase.createClient)
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+  : null;
+
+// Fire-and-forget: logs a completion centrally so admin.html and the 5pm
+// Slack nudge can see it. Never blocks the UI and never throws -- if this
+// fails (offline, etc.) the local Slack post + localStorage save above still
+// went through, so the completion isn't lost from the staff member's POV.
+function logCompletion({ role, checklistType, periodKey, submittedBy, itemsChecked, itemsTotal, itemsJson }) {
+  if (!sb) return;
+  try {
+    sb.from("checklist_completions").insert({
+      role,
+      checklist_type: checklistType,
+      period_key: periodKey,
+      completion_date: todayKey(),
+      submitted_by: submittedBy,
+      items_checked: itemsChecked,
+      items_total: itemsTotal,
+      items_json: itemsJson || null,
+    }).then(({ error }) => { if (error) console.warn("checklist log failed:", error.message); });
+  } catch (e) { console.warn("checklist log failed:", e); }
+}
+
 // ── CHECKLIST COMPONENT (DAILY) ───────────────────────────────────────────────
 function Checklist({ roleKey, onBack }) {
   const role = ROLES[roleKey];
@@ -541,6 +571,7 @@ function Checklist({ roleKey, onBack }) {
     setTimeout(() => setToast(null), 4000);
     setTimeout(() => window.open(SLACK_URL, "_blank"), 400);
     postSlack("\u2705 *" + name.trim() + "* completed *" + role.label + " \u2014 " + list.label + "* at " + now + " on " + today);
+    logCompletion({ role: roleKey, checklistType: "daily", periodKey: active, submittedBy: name.trim(), itemsChecked: checked, itemsTotal: total, itemsJson: checks[active] });
   }
   function reset() {
     const fresh = buildEmptyChecks(data);
@@ -714,6 +745,7 @@ function WeeklyChecklist({ roleKey, onBack }) {
     setTimeout(() => setToast(null), 4000);
     setTimeout(() => window.open(SLACK_URL, "_blank"), 400);
     postSlack("\u2705 *" + name.trim() + "* completed *" + role.label + " -- Weekly (" + WEEKDAY_FULL[active] + ")* at " + now + " on " + today);
+    logCompletion({ role: roleKey, checklistType: "weekly", periodKey: active, submittedBy: name.trim(), itemsChecked: checked, itemsTotal: total, itemsJson: Object.fromEntries(dayIdxs.map(idx => [idx, checks[idx] === true])) });
   }
   function reset() {
     const newChk = { ...checks };
@@ -867,6 +899,7 @@ function MonthlyChecklist({ roleKey, onBack }) {
     setTimeout(() => setToast(null), 4000);
     setTimeout(() => window.open(SLACK_URL, "_blank"), 400);
     postSlack("\u2705 *" + name.trim() + "* completed *" + role.label + " -- Monthly Tasks* at " + now + " on " + today);
+    logCompletion({ role: roleKey, checklistType: "monthly", periodKey: "monthly", submittedBy: name.trim(), itemsChecked: checked, itemsTotal: total, itemsJson: checks });
   }
   function reset() { setChecks({}); setDone(null); }
 

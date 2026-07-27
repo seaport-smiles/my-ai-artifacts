@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seaport Smiles | Checklist History (Admin)</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.22.5/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F0F4F8; font-family: 'DM Sans', sans-serif; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { useState, useEffect } = React;
+
+// ── SUPABASE ───────────────────────────────────────────────────────────────────
+const SUPABASE_URL = "https://njwcxykpmxphdytsfqka.supabase.co";
+const SUPABASE_KEY  = "sb_publishable_RUqA_ifoIScfx5UJrdYUQw_uaFZfeEj";
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ── STATIC "WHAT'S EXPECTED" TABLES ────────────────────────────────────────────
+// KEEP IN SYNC with seaport-smiles-app.html (ROLES / WEEKLY_DATA / MONTHLY_DATA)
+// and with the checklist-nudge Edge Function. Three copies of this shape exist
+// because the site is a single static file with no shared module to import
+// from -- if the checklist structure changes, update all three.
+//
+// Known limitation: per-device "Manage Schedule" overrides (a weekly task
+// reassigned to a different day, or a changed monthly recurrence) live only
+// in that device's localStorage and are invisible here. This page shows the
+// DEFAULT schedule. Anything actually submitted still shows up below under
+// "Also submitted" even if it doesn't match an expected slot.
+
+const ROLES = {
+  frontdesk: { label: "Front Desk", icon: "🗂️", color: "#E8A838", grad: "linear-gradient(135deg, #0F2035 0%, #1B3A5C 100%)" },
+  clinic:    { label: "Clinical Assistant", icon: "🦷", color: "#2E7D9F", grad: "linear-gradient(135deg, #0B1E30 0%, #1B3A5C 100%)" },
+  tc:        { label: "Treatment Coordinator", icon: "📋", color: "#C2610F", grad: "linear-gradient(135deg, #1A0A00 0%, #3D1A00 100%)" },
+};
+
+const DAILY_TABS = {
+  frontdesk: [ ["opening","Opening"], ["throughout","Throughout Day"], ["closing","Closing"] ],
+  clinic:    [ ["morning","Morning Setup"], ["midday","Midday"], ["closing","Closing"], ["whiteglove","White Glove"] ],
+  tc:        [ ["opening","Opening"], ["afternoon","Afternoon"], ["closing","Closing"], ["whiteglove","White Glove"] ],
+};
+
+const WEEKLY_DEFAULT_DAYS = { frontdesk: ["monday","tuesday","wednesday"], clinic: ["friday"], tc: ["monday"] };
+const MONTHLY_RECURRENCE  = { frontdesk: { week: 3, day: "thursday" } }; // clinic/tc have no monthly items today
+
+const WEEKDAY_NUMS = { sunday:0, monday:1, tuesday:2, wednesday:3, thursday:4, friday:5, saturday:6 };
+
+function nthWeekdayOfMonth(year, monthIndex, weekdayName, n) {
+  const target = WEEKDAY_NUMS[weekdayName];
+  const d = new Date(year, monthIndex, 1);
+  let count = 0;
+  while (d.getMonth() === monthIndex) {
+    if (d.getDay() === target) { count++; if (count === n) return d.getDate(); }
+    d.setDate(d.getDate() + 1);
+  }
+  return null;
+}
+
+function todayKey() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function weekdayNameFor(dateStr) {
+  const [y,m,d] = dateStr.split("-").map(n=>parseInt(n,10));
+  const days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+  return days[new Date(y, m-1, d).getDay()];
+}
+function fmtDate(dateStr) {
+  const [y,m,d] = dateStr.split("-").map(n=>parseInt(n,10));
+  return new Date(y, m-1, d).toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
+}
+function fmtTime(ts) {
+  return new Date(ts).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+}
+
+// Build the expected slots for a given date: [{role, checklistType, periodKey, label}]
+function expectedSlots(dateStr) {
+  const [y,m,d] = dateStr.split("-").map(n=>parseInt(n,10));
+  const weekday = weekdayNameFor(dateStr);
+  const slots = [];
+  for (const role of Object.keys(DAILY_TABS)) {
+    DAILY_TABS[role].forEach(([key,label]) => slots.push({ role, checklistType:"daily", periodKey:key, label }));
+    if ((WEEKLY_DEFAULT_DAYS[role]||[]).includes(weekday)) {
+      slots.push({ role, checklistType:"weekly", periodKey:weekday, label:"Weekly" });
+    }
+    const rec = MONTHLY_RECURRENCE[role];
+    if (rec && nthWeekdayOfMonth(y, m-1, rec.day, rec.week) === d) {
+      slots.push({ role, checklistType:"monthly", periodKey:"monthly", label:"Monthly" });
+    }
+  }
+  return slots;
+}
+
+function App() {
+  const [date, setDate] = useState(todayKey());
+  const [rows, setRows] = useState(null);
+  const [err, setErr]   = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setRows(null); setErr(null);
+    sb.from("checklist_completions").select("*").eq("completion_date", date).order("submitted_at", { ascending: true })
+      .then(({ data, error }) => {
+        if (cancelled) return;
+        if (error) { setErr(error.message); setRows([]); return; }
+        setRows(data || []);
+      });
+    return () => { cancelled = true; };
+  }, [date]);
+
+  // Group by slot: keep the latest submission per (role, checklist_type,
+  // period_key) for display, and a count in case more than one landed.
+  const counts = {};
+  const byKey = {};
+  (rows || []).forEach(r => {
+    const k = r.role + "|" + r.checklist_type + "|" + r.period_key;
+    counts[k] = (counts[k] || 0) + 1;
+    if (!byKey[k] || new Date(r.submitted_at) > new Date(byKey[k].submitted_at)) byKey[k] = r;
+  });
+  Object.keys(byKey).forEach(k => { byKey[k].__count = counts[k]; });
+
+  const slots = expectedSlots(date);
+  const slotKeys = new Set(slots.map(s => s.role+"|"+s.checklistType+"|"+s.periodKey));
+  const extras = Object.keys(byKey).filter(k => !slotKeys.has(k)).map(k => byKey[k]);
+
+  return (
+    <div style={{ maxWidth: 720, margin: "0 auto", paddingBottom: 40 }}>
+      <div style={{ background: "linear-gradient(160deg,#0B1E30 0%,#1B3A5C 60%,#0B2A3D 100%)", padding: "28px 20px 22px", textAlign:"center" }}>
+        <div style={{ color:"#fff", fontSize:20, fontWeight:900, letterSpacing:"-0.5px", marginBottom:4 }}>Seaport Smiles</div>
+        <div style={{ color:"rgba(255,255,255,0.55)", fontSize:13, marginBottom:14 }}>Checklist History</div>
+        <input type="date" value={date} onChange={e=>setDate(e.target.value)}
+          style={{ fontFamily:"inherit", fontSize:14, padding:"8px 14px", borderRadius:10, border:"none", background:"rgba(255,255,255,0.12)", color:"#fff" }} />
+        <div style={{ color:"rgba(255,255,255,0.6)", fontSize:12, marginTop:10 }}>{fmtDate(date)}</div>
+      </div>
+
+      <div style={{ padding: "18px 14px" }}>
+        {err && <div style={{ background:"#FEF2F2", color:"#991B1B", padding:12, borderRadius:10, marginBottom:14, fontSize:13 }}>Couldn't load: {err}</div>}
+        {rows === null && !err && <div style={{ textAlign:"center", color:"#94A3B8", padding:40, fontSize:13 }}>Loading...</div>}
+
+        {rows !== null && Object.entries(ROLES).map(([roleKey, role]) => {
+          const roleSlots = slots.filter(s => s.role === roleKey);
+          return (
+            <div key={roleKey} style={{ background:"#fff", borderRadius:16, boxShadow:"0 2px 8px rgba(0,0,0,0.06)", marginBottom:14, overflow:"hidden" }}>
+              <div style={{ background: role.grad, padding:"12px 16px", color:"#fff", fontWeight:800, fontSize:14, display:"flex", alignItems:"center", gap:8 }}>
+                <span>{role.icon}</span><span>{role.label}</span>
+              </div>
+              <div style={{ padding: 12 }}>
+                {roleSlots.map((s, i) => {
+                  const k = s.role+"|"+s.checklistType+"|"+s.periodKey;
+                  const entry = byKey[k];
+                  return (
+                    <div key={i} style={{
+                      display:"flex", justifyContent:"space-between", alignItems:"center",
+                      padding:"10px 12px", borderRadius:10, marginBottom:6,
+                      background: entry ? "#F0FDF4" : "#FEF2F2",
+                      border: "1px solid " + (entry ? "#86EFAC" : "#FECACA"),
+                    }}>
+                      <span style={{ fontSize:13, fontWeight:600, color:"#1E293B" }}>
+                        {s.label}
+                      </span>
+                      {entry ? (
+                        <span style={{ fontSize:12, fontWeight:700, color:"#15803D" }}>
+                          &#10003; {entry.submitted_by} &mdash; {fmtTime(entry.submitted_at)}
+                          {entry.__count > 1 ? " ("+entry.__count+"x)" : ""}
+                        </span>
+                      ) : (
+                        <span style={{ fontSize:12, fontWeight:700, color:"#991B1B" }}>&#10007; Not submitted</span>
+                      )}
+                    </div>
+                  );
+                })}
+                {roleSlots.length === 0 && (
+                  <div style={{ fontSize:12, color:"#94A3B8", padding:"6px 4px" }}>Nothing expected for this role today.</div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+
+        {rows !== null && extras.length > 0 && (
+          <div style={{ background:"#fff", borderRadius:16, boxShadow:"0 2px 8px rgba(0,0,0,0.06)", padding:14 }}>
+            <div style={{ fontWeight:800, fontSize:13, color:"#1E293B", marginBottom:8 }}>Also submitted today</div>
+            <div style={{ fontSize:11, color:"#94A3B8", marginBottom:10 }}>
+              Not on the default schedule for this date -- may reflect a per-device day/recurrence reassignment.
+            </div>
+            {extras.map((entry, i) => (
+              <div key={i} style={{ display:"flex", justifyContent:"space-between", padding:"8px 12px", borderRadius:10, background:"#F8FAFC", marginBottom:6 }}>
+                <span style={{ fontSize:13, color:"#1E293B" }}>
+                  {(ROLES[entry.role]||{label:entry.role}).label} &mdash; {entry.checklist_type} / {entry.period_key}
+                </span>
+                <span style={{ fontSize:12, color:"#15803D", fontWeight:700 }}>{entry.submitted_by} &mdash; {fmtTime(entry.submitted_at)}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {rows !== null && rows.length === 0 && (
+          <div style={{ textAlign:"center", color:"#94A3B8", padding:20, fontSize:13 }}>No completions logged for this date yet.</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
